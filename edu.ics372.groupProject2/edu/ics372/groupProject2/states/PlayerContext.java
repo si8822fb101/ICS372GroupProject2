@@ -1,6 +1,6 @@
 package edu.ics372.groupProject2.states;
 
-import edu.ics372.groupProject2.display.RemoteDisplay;
+import edu.ics372.groupProject2.display.PlayerDisplay;
 
 /**
  * 
