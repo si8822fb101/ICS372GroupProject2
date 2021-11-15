@@ -24,7 +24,7 @@ package edu.ics372.groupProject2.states;
  * Represents the player on state
  *
  */
-public class PlayerOnState extends RemoteState {
+public class PlayerOnState extends PlayerState {
 
 	private static PlayerOnState instance;
 
@@ -52,7 +52,7 @@ public class PlayerOnState extends RemoteState {
 	 */
 	@Override
 	public void onOffRequest() {
-		RemoteContext.getInstance().changeState(PlayerOffState.getInstance());
+		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
 	/*
 	 * All of the methods below would become acceptable once a show is selected
@@ -65,7 +65,7 @@ public class PlayerOnState extends RemoteState {
 	 */
 	@Override
 	public void onPlayShowRequest() {
-		RemoteContext.getInstance().changeState(PlayState.getInstance());
+		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 
 	/*
@@ -73,7 +73,7 @@ public class PlayerOnState extends RemoteState {
 	 */
 	@Override
 	public void onPauseShowRequest() {
-		RemoteContext.getInstance().changeState(PauseState.getInstance());
+		PlayerContext.getInstance().changeState(PauseState.getInstance());
 	}
 
 	/*
@@ -81,7 +81,7 @@ public class PlayerOnState extends RemoteState {
 	 */
 	@Override
 	public void onStopShowRequest() {
-		RemoteContext.getInstance().changeState(StopState.getInstance());
+		PlayerContext.getInstance().changeState(StopState.getInstance());
 	}
 
 	/*
@@ -89,7 +89,7 @@ public class PlayerOnState extends RemoteState {
 	 */
 	@Override
 	public void onFastForwardRequest() {
-		RemoteContext.getInstance().changeState(FastForwardState.getInstance());
+		PlayerContext.getInstance().changeState(FastForwardState.getInstance());
 	}
 
 	/*
@@ -97,7 +97,7 @@ public class PlayerOnState extends RemoteState {
 	 */
 	@Override
 	public void onRewindRequest() {
-		RemoteContext.getInstance().changeState(RewindState.getInstance());
+		PlayerContext.getInstance().changeState(RewindState.getInstance());
 	}
 
 	/*
@@ -111,11 +111,11 @@ public class PlayerOnState extends RemoteState {
 	 */
 	@Override
 	public void enter() {
-		RemoteContext.getInstance().showPlayerOn();
+		PlayerContext.getInstance().showPlayerOn();
 	}
 
 	@Override
 	public void leave() {
-		RemoteContext.getInstance().showPlayerOff();
+		PlayerContext.getInstance().showPlayerOff();
 	}
 }
