@@ -8,7 +8,7 @@ import edu.ics372.groupProject2.buttons.PlayerOffButton;
 import edu.ics372.groupProject2.buttons.PlayerOnButton;
 import edu.ics372.groupProject2.buttons.RewindButton;
 import edu.ics372.groupProject2.buttons.StopButton;
-import edu.ics372.groupProject2.states.RemoteContext;
+import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -43,7 +43,7 @@ import javafx.stage.WindowEvent;
  * GUI to implement the MicrowaveDisplay interface A pretty elementary interface
  *
  */
-public class GUIDisplay extends Application implements RemoteDisplay {
+public class GUIDisplay extends Application implements PlayerDisplay {
 	private GUIButton playerOn;
 	private GUIButton playerOff;
 	private GUIButton pauseShow;
@@ -53,7 +53,8 @@ public class GUIDisplay extends Application implements RemoteDisplay {
 	private GUIButton stopShow;
 	private Label statusText;
 	private ListView showList;
-	// Hold on to these text vars
+	// Hold on to these text vars in case we need them for future usage
+	//Such as displaying the time of the show playing
 	private Text playerStatus = new Text("Status: Player off");
 	private Text timerValue = new Text("            ");
 	private Text showSelectedStatus = new Text("Show selected: no");
@@ -100,7 +101,7 @@ public class GUIDisplay extends Application implements RemoteDisplay {
 		Scene scene = new Scene(mainPane);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Remote Control and Player Interface");
-		RemoteContext.getInstance().setDisplay(this);// UPDATED CLASS NAME TO RemoteContext not: PlayerContext
+		PlayerContext.getInstance().setDisplay(this);// UPDATED CLASS NAME TO RemoteContext not: PlayerContext
 		primaryStage.show();
 		primaryStage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, new EventHandler<WindowEvent>() {
 			@Override
