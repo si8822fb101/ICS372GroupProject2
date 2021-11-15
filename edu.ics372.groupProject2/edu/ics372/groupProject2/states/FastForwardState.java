@@ -24,7 +24,7 @@ package edu.ics372.groupProject2.states;
  * Represents the fast forwarding state
  *
  */
-public class FastForwardState extends RemoteState {
+public class FastForwardState extends PlayerState {
 	private static FastForwardState instance;
 
 	/**
