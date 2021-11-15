@@ -28,8 +28,8 @@ import edu.ics372.groupProject2.display.RemoteDisplay;
  *
  */
 public class PlayerContext {
-	private RemoteDisplay display;
-	private RemoteState currentState;
+	private PlayerDisplay display;
+	private PlayerState currentState;
 	private static PlayerContext instance;
 
 	/**
@@ -57,7 +57,7 @@ public class PlayerContext {
 	 * 
 	 * @param display The current display object
 	 */
-	public void setDisplay(RemoteDisplay display) {
+	public void setDisplay(PlayerDisplay display) {
 		this.display = display;
 	}
 
@@ -75,7 +75,7 @@ public class PlayerContext {
 	 * 
 	 * @param nextState the next state
 	 */
-	public void changeState(RemoteState nextState) {
+	public void changeState(PlayerState nextState) {
 		currentState.leave();
 		currentState = nextState;
 		currentState.enter();
