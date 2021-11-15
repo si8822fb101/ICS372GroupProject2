@@ -24,7 +24,7 @@ package edu.ics372.groupProject2.states;
  * Represents the play show state
  *
  */
-public class PlayState extends RemoteState {
+public class PlayState extends PlayerState {
 	private static PlayState instance;
 
 	/**
