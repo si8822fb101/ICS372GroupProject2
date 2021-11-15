@@ -1,4 +1,4 @@
-package edu.ics372.groupproject2.states;
+package edu.ics372.groupProject2.states;
 
 /**
  * 
