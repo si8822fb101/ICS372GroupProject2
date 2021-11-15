@@ -1,14 +1,43 @@
-package edu.ics372.groupProject2.states;
+package edu.ics372.groupproject2.states;
 
-import edu.ics372.groupProject2.display.PlayerDisplay;
+import edu.ics372.groupproject2.display.RemoteDisplay;
 
+/**
+ * 
+ * @author Nathan Lantaigne-Goetsch
+ * @Copyright (c) 2021
+ 
+ * Redistribution and use with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   - the use is for academic purpose only
+ *   - Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *   - Neither the name of Brahma Dathan or Sarnath Ramnath
+ *     may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * The authors do not make any claims regarding the correctness of the code in this module
+ * and are not responsible for any loss or damage resulting from its use.  
+ */
+
+/**
+ * The context is an observer for the clock and stores the context info for
+ * states
+ *
+ */
 public class PlayerContext {
-	private PlayerDisplay display;
-	private PlayerState currentState;
+	private RemoteDisplay display;
+	private RemoteState currentState;
 	private static PlayerContext instance;
 
+	/**
+	 * Make it a singleton
+	 */
 	private PlayerContext() {
 		instance = this;
+		currentState = PlayerOffState.getInstance();// UPDATED THIS BY NATE G
 	}
 
 	/**
@@ -28,8 +57,176 @@ public class PlayerContext {
 	 * 
 	 * @param display The current display object
 	 */
-	public void setDisplay(PlayerDisplay display) {
+	public void setDisplay(RemoteDisplay display) {
 		this.display = display;
 	}
 
+	/**
+	 * Lets Player off state be the starting state adds the object as an observable
+	 * for clock
+	 */
+	public void initialize() {
+		instance.changeState(PlayerOffState.getInstance());// UPDATED THIS BY NATE G
+
+	}
+
+	/**
+	 * Called from the states to change the current state
+	 * 
+	 * @param nextState the next state
+	 */
+	public void changeState(RemoteState nextState) {
+		currentState.leave();
+		currentState = nextState;
+		currentState.enter();
+	}
+
+	/**
+	 * Process turn player ON request
+	 */
+	public void onOnRequest() {
+		currentState.onOnRequest();
+	}
+
+	/**
+	 * Process turn player OFF request
+	 */
+	public void onOffRequest() {
+		currentState.onOffRequest();
+	}
+
+	/**
+	 * Process play show PLAY request
+	 */
+	public void onPlayShowRequest() {
+		currentState.onPlayShowRequest();
+	}
+
+	/**
+	 * Process stop show STOP request
+	 */
+	public void onStopShowRequest() {
+		currentState.onStopShowRequest();
+	}
+
+	/**
+	 * Process pause show PAUSE request
+	 */
+	public void onPauseShowRequest() {
+		currentState.onPauseShowRequest();
+	}
+
+	/**
+	 * Process fast forwarding FF(Fast Forwarding show) request
+	 */
+	public void onFastForwardRequest() {
+		currentState.onFastForwardRequest();
+	}
+
+	/**
+	 * Process rewind REW(Rewind show) request
+	 */
+	public void onRewindRequest() {
+		currentState.onRewindRequest();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 * @param time time left for cooking
+	 */
+	public void showTimeLeft(int time) {
+		display.showTimeLeft(time);
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showPlayerOn() {
+		display.showPlayerOn();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showPlayerOff() {
+		display.showPlayerOff();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showSelectedShow() {
+		display.showSelectedShow();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showPlayingShow() {
+		display.showPlayingShow();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showPausedShow() {
+		display.showPausedShow();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showStoppedShow() {
+		display.showStoppedShow();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showShowRewinding() {
+		display.showShowRewinding();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showShowFastForwarding() {
+		display.showShowFastwording();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showScreenSaverOn() {
+		display.showScreenSaverOn();
+	}
+
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
+	public void showScreenSaverOff() {
+		display.showScreenSaverOff();
+	}
 }
