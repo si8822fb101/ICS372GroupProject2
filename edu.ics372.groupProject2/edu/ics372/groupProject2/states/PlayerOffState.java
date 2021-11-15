@@ -24,7 +24,7 @@ package edu.ics372.groupProject2.states;
  * Represents the door closed state
  *
  */
-public class PlayerOffState extends RemoteState {
+public class PlayerOffState extends PlayerState {
 
 	private static PlayerOffState instance;
 
@@ -51,7 +51,7 @@ public class PlayerOffState extends RemoteState {
 	 */
 	@Override
 	public void onOnRequest() {
-		RemoteContext.getInstance().changeState(PlayerOnState.getInstance());
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	/**
@@ -60,11 +60,11 @@ public class PlayerOffState extends RemoteState {
 	 */
 	@Override
 	public void enter() {
-		RemoteContext.getInstance().showPlayerOff();
+		PlayerContext.getInstance().showPlayerOff();
 	}
 
 	@Override
 	public void leave() {
-		RemoteContext.getInstance().showPlayerOn();
+		PlayerContext.getInstance().showPlayerOn();
 	}
 }
