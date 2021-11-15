@@ -10,19 +10,20 @@ import javafx.event.EventHandler;
  * @author Nathan Lantaigne-Goetsch
  *
  */
-public class StopButton extends GUIButton implements EventHandler<ActionEvent> {
+public class RewindButton extends GUIButton implements EventHandler<ActionEvent> {
 	/**
 	 * Create the button with the proper display
 	 * 
 	 * @param string the text to be put
 	 */
-	public StopButton(String string) {
+	public RewindButton(String string) {
 		super(string);
 	}
 
 	@Override
 	public void handle(ActionEvent arg0) {
-		PlayerContext.getInstance().onStopShowRequest();
+		PlayerContext.getInstance().onRewindRequest();
+
 	}
 
 }
