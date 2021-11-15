@@ -1,8 +1,6 @@
 package edu.ics372.groupProject2.states;
 
-/**
- * 
- * @author Nathan Lantainge-Goetsch
+* @author Nathan Lantainge-Goetsch
  * @Copyright (c) 2021
  
  * Redistribution and use with or without
@@ -24,7 +22,7 @@ package edu.ics372.groupProject2.states;
  * Represents the pause show state
  *
  */
-public class PauseState extends RemoteState {
+public class PauseState extends PlayerState {
 	private static PauseState instance;
 
 	/**
