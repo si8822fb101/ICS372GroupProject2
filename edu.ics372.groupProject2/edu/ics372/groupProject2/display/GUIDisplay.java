@@ -8,6 +8,7 @@ import edu.ics372.groupProject2.buttons.PauseButton;
 import edu.ics372.groupProject2.buttons.PlayButton;
 import edu.ics372.groupProject2.buttons.RewindButton;
 import edu.ics372.groupProject2.buttons.StopButton;
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -62,6 +64,11 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		// to add list view control to status pane
 		statusPane.add(statusText, 0, 0);
 		statusPane.add(showList, 0, 1);
+		showList.getItems().add(new Show("n1", 10));
+		showList.getItems().add(new Show("n2", 20));
+		showList.getItems().add(new Show("n3", 30));
+		showList.getItems().add(new Show("n4", 40));
+		showList.getItems().add(new Show("n5", 50));
 		statusPane.setStyle("-fx-background-color: white;");
 		// statusText.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		statusText.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
