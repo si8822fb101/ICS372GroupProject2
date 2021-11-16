@@ -6,7 +6,6 @@ public class Show {
 	private int time;
 
 	public Show(String name, int time) {
-		super();
 		this.name = name;
 		this.time = time;
 	}
