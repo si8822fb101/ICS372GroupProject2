@@ -8,6 +8,7 @@ import edu.ics372.groupProject2.buttons.PlayerOffButton;
 import edu.ics372.groupProject2.buttons.PlayerOnButton;
 import edu.ics372.groupProject2.buttons.RewindButton;
 import edu.ics372.groupProject2.buttons.StopButton;
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -52,14 +53,9 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	private GUIButton fastForwardShow;
 	private GUIButton stopShow;
 	private Label statusText;
-	private ListView showList;
-	// Hold on to these text vars in case we need them for future usage
-	//Such as displaying the time of the show playing
-	private Text playerStatus = new Text("Status: Player off");
+	private ListView<Show> showList;
+	// Hold on to these text vars
 	private Text timerValue = new Text("            ");
-	private Text showSelectedStatus = new Text("Show selected: no");
-	private Text showStatus = new Text("");
-	private Text screenSaverStatus = new Text("Screen saver off");
 
 	/**
 	 * Sets up the interface
@@ -73,10 +69,10 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		pauseShow = new PauseButton("Pause");
 		fastForwardShow = new FastForwardButton("FF");
 		rewindShow = new RewindButton("Rew");
-		statusText = new Label("Status");
+		statusText = new Label("Status: Player off");
 		statusText.setMinWidth(50);
 		statusText.setMinHeight(50);
-		showList = new ListView();
+		showList = new ListView<Show>();
 		GridPane mainPane = new GridPane();
 		mainPane.setHgap(10);
 		mainPane.setVgap(10);
@@ -92,6 +88,11 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		// to add list view control to status pane
 		statusPane.add(statusText, 0, 0);
 		statusPane.add(showList, 0, 1);
+		showList.getItems().add(new Show("n1", 10));
+		showList.getItems().add(new Show("n2", 20));
+		showList.getItems().add(new Show("n3", 30));
+		showList.getItems().add(new Show("n4", 40));
+		showList.getItems().add(new Show("n5", 50));
 		statusPane.setStyle("-fx-background-color: white;");
 		statusText.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		mainPane.add(buttonPane, 0, 0);
@@ -173,7 +174,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	@Override
 	public void showScreenSaverOn() {
 		// screenSaverStatus.setText("Screen saver on");
-		statusText.setText("Status: Screen saver on");
+		statusText.setText("Status: ICS372-01");
 	}
 
 	@Override
