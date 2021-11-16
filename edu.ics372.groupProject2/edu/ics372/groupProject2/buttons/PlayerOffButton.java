@@ -1,6 +1,6 @@
-package edu.ics372.groupProject2.buttons;
+package edu.ics372.groupproject2.buttons;
 
-import edu.ics372.groupProject2.states.PlayerContext;
+import edu.ics372.groupproject2.states.PlayerContext;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -10,19 +10,19 @@ import javafx.event.EventHandler;
  * @author Nathan Lantaigne-Goetsch
  *
  */
-public class StopButton extends GUIButton implements EventHandler<ActionEvent> {
+public class PlayerOffButton extends GUIButton implements EventHandler<ActionEvent> {
 	/**
 	 * Create the button with the proper display
 	 * 
 	 * @param string the text to be put
 	 */
-	public StopButton(String string) {
+	public PlayerOffButton(String string) {
 		super(string);
 	}
 
 	@Override
 	public void handle(ActionEvent arg0) {
-		PlayerContext.getInstance().onStopShowRequest();
+		PlayerContext.getInstance().onOffRequest();
 	}
 
 }

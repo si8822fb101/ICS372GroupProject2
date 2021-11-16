@@ -1,19 +1,28 @@
-package edu.ics372.groupProject2.buttons;
+package edu.ics372.groupproject2.buttons;
 
+import edu.ics372.groupproject2.states.PlayerContext;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+/**
+ * The player on request is made using an instance of this class
+ * 
+ * @author Nathan Lantaigne-Goetsch
+ *
+ */
 public class PlayButton extends GUIButton implements EventHandler<ActionEvent> {
-
+	/**
+	 * Create the button with the proper display
+	 * 
+	 * @param string the text to be put
+	 */
 	public PlayButton(String string) {
 		super(string);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void handle(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
+		PlayerContext.getInstance().onPlayShowRequest();
 	}
 
 }
