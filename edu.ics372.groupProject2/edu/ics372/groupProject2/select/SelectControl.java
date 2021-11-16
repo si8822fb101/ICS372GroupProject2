@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.select;
 
+import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
@@ -13,12 +14,14 @@ public class SelectControl extends ListView<Show> {
 	public SelectControl() {
 		super(ShowList.getInstance().getShows()); // gets the ObservableList
 		setOnMouseClicked(new EventHandler<Event>() {
+
 			@Override
 			public void handle(Event arg0) {
 				System.out.println("clicked on event " + getSelectionModel().getSelectedItem());
 
 				Show show = (Show) getSelectionModel().getSelectedItem();
-				// code to use the Show object
+				System.out.println(show);
+				PlayerContext.getInstance().onSelectShowRequest();
 			}
 		});
 
