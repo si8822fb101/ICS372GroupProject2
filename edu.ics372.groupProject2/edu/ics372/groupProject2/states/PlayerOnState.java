@@ -81,6 +81,6 @@ public class PlayerOnState extends PlayerState {
 
 	@Override
 	public void leave() {
-		PlayerContext.getInstance().showPlayerOff();
+
 	}
 }
