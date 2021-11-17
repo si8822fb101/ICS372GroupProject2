@@ -136,9 +136,9 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showSelectedShow() {
+	public void showSelectedShow(String showDetails) {
 		// showSelectedStatus.setText("Show selected yes");
-		statusText.setText("Status: Show selected");
+		statusText.setText("Status: Show selected [" + showDetails + "]");
 	}
 
 	@Override

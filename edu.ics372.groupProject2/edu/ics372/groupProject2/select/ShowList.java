@@ -10,6 +10,9 @@ public class ShowList {
 	 * Private for the singleton pattern
 	 */
 	private ShowList() {
+		for (int i = 0; i < 5; i++) {
+			shows.add(new Show("N" + (i + 1), (i + 1) * 10000));
+		}
 	}
 
 	/**

@@ -24,7 +24,7 @@ package edu.ics372.groupProject2.display;
  * a lot of freedom to choose its display.
  */
 public interface PlayerDisplay {
-  /**
+	/**
 	 * Displays the show time remaining
 	 * 
 	 * @param time remaining time
@@ -44,7 +44,7 @@ public interface PlayerDisplay {
 	/**
 	 * Indicate that a show was selected
 	 */
-	public void showSelectedShow();
+	public void showSelectedShow(String showDetails);
 
 	/**
 	 * Indicate that the selected show is playing
