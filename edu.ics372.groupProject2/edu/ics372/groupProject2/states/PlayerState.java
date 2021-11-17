@@ -87,9 +87,9 @@ public abstract class PlayerState {
 	}
 
 	/**
-	 * Process clock tick Generates the timer runs out event
+	 * Specifies actions to be taken when a show is selected
 	 */
-	public void onTimerTick(int timerValue) {
+	public void onSelectRequest() {
 
 	}
 
@@ -97,6 +97,13 @@ public abstract class PlayerState {
 	 * Process clock ticks Generates the timer runs out event
 	 */
 	public void onTimerRunsOut() {
+
+	}
+
+	/**
+	 * Specifies actions when a show ends
+	 */
+	public void onShowEnds() {
 
 	}
 

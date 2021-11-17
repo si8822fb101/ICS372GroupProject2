@@ -131,6 +131,13 @@ public class PlayerContext {
 	}
 
 	/**
+	 * Process select show request
+	 */
+	public void onSelectRequest() {
+		currentState.onSelectRequest();
+	}
+
+	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
 	 * 
