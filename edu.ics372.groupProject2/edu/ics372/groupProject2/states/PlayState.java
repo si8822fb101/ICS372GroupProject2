@@ -1,5 +1,7 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.timer.Timer;
+
 /**
  * 
  * @author Nathan Lantainge-Goetsch
@@ -26,6 +28,7 @@ package edu.ics372.groupProject2.states;
  */
 public class PlayState extends PlayerState {
 	private static PlayState instance;
+	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -86,13 +89,23 @@ public class PlayState extends PlayerState {
 	}
 
 	@Override
+	public void onTimerRunsOut() {
+		PlayerContext.getInstance().showTimeLeft(0);
+		PlayerContext.getInstance().changeState(StopState.getInstance());
+	}
+
+	@Override
 	public void enter() {
 		PlayerContext.getInstance().showPlayingShow();
+		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
 		PlayerContext.getInstance().showStoppedShow();
+		timer.stop();
+		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
+
 	}
 
 }
