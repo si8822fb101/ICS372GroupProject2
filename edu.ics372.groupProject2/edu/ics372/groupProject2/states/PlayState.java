@@ -88,6 +88,9 @@ public class PlayState extends PlayerState {
 		PlayerContext.getInstance().changeState(RewindState.getInstance());
 	}
 
+	/**
+	 * Process the timer runs out event
+	 */
 	@Override
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().showTimeLeft(0);
