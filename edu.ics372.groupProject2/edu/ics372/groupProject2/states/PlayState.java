@@ -99,6 +99,7 @@ public class PlayState extends PlayerState {
 
 	@Override
 	public void enter() {
+		//timer = new Timer(this, getTimeOfSelectedShowHere);
 		PlayerContext.getInstance().showPlayingShow();
 		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
@@ -107,6 +108,10 @@ public class PlayState extends PlayerState {
 	public void leave() {
 		PlayerContext.getInstance().showStoppedShow();
 		timer.stop();
+		//timer = null;
+		//timer could possibly be set to 10, so it can begin countdown for
+		//screen saver initializing
+		//Possibly change showTimeLeft below to 0 or nothing at all
 		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 
 	}
