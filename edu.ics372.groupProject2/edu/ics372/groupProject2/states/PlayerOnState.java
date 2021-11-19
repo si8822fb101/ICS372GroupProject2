@@ -54,56 +54,21 @@ public class PlayerOnState extends PlayerState {
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
-	/*
-	 * All of the methods below would become acceptable once a show is selected
-	 * Since, that has not been implemented yet. We assume that once the player is
-	 * turned on. Then a show is auto selected by the player.
-	 */
 
 	/*
-	 * Handle play show event
+	 * Handle show selection request
 	 */
 	@Override
-	public void onPlayShowRequest() {
-		PlayerContext.getInstance().changeState(PlayState.getInstance());
+	public void onSelectRequest() {
+		PlayerContext.getInstance().changeState(SelectState.getInstance());
 	}
 
 	/*
-	 * Handle pause show event
+	 * Handle 10 second times running out
 	 */
-	@Override
-	public void onPauseShowRequest() {
-		PlayerContext.getInstance().changeState(PauseState.getInstance());
+	public void onTimerRunsOut() {
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
-
-	/*
-	 * Handle stop show event
-	 */
-	@Override
-	public void onStopShowRequest() {
-		PlayerContext.getInstance().changeState(StopState.getInstance());
-	}
-
-	/*
-	 * Handle fast forward show event
-	 */
-	@Override
-	public void onFastForwardRequest() {
-		PlayerContext.getInstance().changeState(FastForwardState.getInstance());
-	}
-
-	/*
-	 * Handle rewind show event
-	 */
-	@Override
-	public void onRewindRequest() {
-		PlayerContext.getInstance().changeState(RewindState.getInstance());
-	}
-
-	/*
-	 * The above methods will only work once a show has been selected. Which a show
-	 * being selected has not quite been implemented yet...
-	 */
 
 	/**
 	 * initialize the state
@@ -116,6 +81,6 @@ public class PlayerOnState extends PlayerState {
 
 	@Override
 	public void leave() {
-		PlayerContext.getInstance().showPlayerOff();
+
 	}
 }
