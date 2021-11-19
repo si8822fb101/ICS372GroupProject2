@@ -17,11 +17,8 @@ public class SelectControl extends ListView<Show> {
 
 			@Override
 			public void handle(Event arg0) {
-				System.out.println("clicked on event " + getSelectionModel().getSelectedItem());
-
 				Show show = (Show) getSelectionModel().getSelectedItem();
-				System.out.println(show);
-				PlayerContext.getInstance().onSelectShowRequest();
+				PlayerContext.getInstance().onSelectRequest(show.toString());
 			}
 		});
 

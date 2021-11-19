@@ -133,8 +133,8 @@ public class PlayerContext {
 	/**
 	 * Process select show request
 	 */
-	public void onSelectRequest() {
-		currentState.onSelectRequest();
+	public void onSelectRequest(String showDetails) {
+		currentState.onSelectRequest(showDetails);
 	}
 
 	/**
@@ -170,8 +170,8 @@ public class PlayerContext {
 	 * from changes to the way the system utilizes the state changes.
 	 * 
 	 */
-	public void showSelectedShow() {
-		display.showSelectedShow();
+	public void showSelectedShow(String showDetails) {
+		display.showSelectedShow(showDetails);
 	}
 
 	/**

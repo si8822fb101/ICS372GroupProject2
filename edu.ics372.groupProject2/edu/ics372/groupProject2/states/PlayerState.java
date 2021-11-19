@@ -89,7 +89,7 @@ public abstract class PlayerState {
 	/**
 	 * Specifies actions to be taken when a show is selected
 	 */
-	public void onSelectRequest() {
+	public void onSelectRequest(String showDetails) {
 
 	}
 
