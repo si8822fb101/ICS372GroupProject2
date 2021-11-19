@@ -1,6 +1,7 @@
 package edu.ics372.groupProject2.states;
 
 import edu.ics372.groupProject2.display.PlayerDisplay;
+import edu.ics372.groupProject2.select.Show;
 
 /**
  * 
@@ -95,11 +96,18 @@ public class PlayerContext {
 		currentState.onOffRequest();
 	}
 
+	/*
+	 * Process select show request
+	 */
+	public void onSelectShowRequest(Show show) {
+		currentState.onSelectShowRequest(show);
+	}
+
 	/**
 	 * Process play show PLAY request
 	 */
 	public void onPlayShowRequest() {
-		currentState.onPlayShowRequest();
+
 	}
 
 	/**
@@ -163,8 +171,8 @@ public class PlayerContext {
 	 * from changes to the way the system utilizes the state changes.
 	 * 
 	 */
-	public void showSelectedShow() {
-		display.showSelectedShow();
+	public void showSelectedShow(Show show) {
+		display.showSelectedShow(show);
 	}
 
 	/**
