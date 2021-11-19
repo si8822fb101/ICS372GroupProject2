@@ -18,12 +18,15 @@ package edu.ics372.groupProject2.states;
  * and are not responsible for any loss or damage resulting from its use.  
  */
 
+import edu.ics372.groupProject2.timer.Timer;
+
 /**
  * Represents the pause show state
  *
  */
 public class PauseState extends PlayerState {
 	private static PauseState instance;
+	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -62,6 +65,7 @@ public class PauseState extends PlayerState {
 	@Override
 	public void enter() {
 		PlayerContext.getInstance().showPausedShow();
+		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
 
 	@Override
