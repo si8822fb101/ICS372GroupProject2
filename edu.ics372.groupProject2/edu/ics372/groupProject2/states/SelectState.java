@@ -1,5 +1,8 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.timer.Notifiable;
+import edu.ics372.groupProject2.timer.Timer;
+
 /**
  * 
  * Represents the idle; show selected state
@@ -7,14 +10,17 @@ package edu.ics372.groupProject2.states;
  * @author Qaalib Farah
  *
  */
-public class SelectState extends PlayerState {
+public class SelectState extends PlayerState implements Notifiable {
 
 	private static SelectState instance;
+	private Timer timer;
+	private String selectedShow;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	private SelectState() {
+	private SelectState(String selectedShow) {
+		this.selectedShow = selectedShow;
 		instance = this;
 	}
 
@@ -23,9 +29,9 @@ public class SelectState extends PlayerState {
 	 * 
 	 * @return the object
 	 */
-	public static SelectState getInstance() {
+	public static SelectState getInstance(String selectedShow) {
 		if (instance == null) {
-			instance = new SelectState();
+			instance = new SelectState(selectedShow);
 		}
 		return instance;
 	}
@@ -51,11 +57,13 @@ public class SelectState extends PlayerState {
 
 	@Override
 	public void enter() {
-		PlayerContext.getInstance().showSelectedShow();
+		timer = new Timer(this, 10000);
+		PlayerContext.getInstance().showSelectedShow(this.selectedShow);
 	}
 
 	@Override
 	public void leave() {
-
+		timer.stop();
+		timer = null;
 	}
 }
