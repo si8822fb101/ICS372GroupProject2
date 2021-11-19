@@ -1,17 +1,35 @@
 package edu.ics372.groupProject2.states;
 
 public class ScreenSaverState extends PlayerState {
+	private static ScreenSaverState instance;
+
+	/**
+	 * private constructor for the singleton pattern
+	 */
+	private ScreenSaverState() {
+	}
+
+	/**
+	 * returns the instance
+	 * 
+	 * @return this object
+	 */
+	public static ScreenSaverState getInstance() {
+		if (instance == null) {
+			instance = new ScreenSaverState();
+		}
+		return instance;
+	}
 
 	@Override
 	public void enter() {
-		// TODO Auto-generated method stub
+		PlayerContext.getInstance().showScreenSaverOn();
 
 	}
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
-
+		PlayerContext.getInstance().showScreenSaverOff();
 	}
 
 }
