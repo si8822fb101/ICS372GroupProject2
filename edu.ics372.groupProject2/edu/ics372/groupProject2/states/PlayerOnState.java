@@ -1,5 +1,9 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
+import edu.ics372.groupProject2.timer.Notifiable;
+import edu.ics372.groupProject2.timer.Timer;
+
 /**
  * 
  * @author Nathan Lantaigne-Goetsch
@@ -24,9 +28,10 @@ package edu.ics372.groupProject2.states;
  * Represents the player on state
  *
  */
-public class PlayerOnState extends PlayerState {
+public class PlayerOnState extends PlayerState implements Notifiable {
 
 	private static PlayerOnState instance;
+	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -54,56 +59,19 @@ public class PlayerOnState extends PlayerState {
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
-	/*
-	 * All of the methods below would become acceptable once a show is selected
-	 * Since, that has not been implemented yet. We assume that once the player is
-	 * turned on. Then a show is auto selected by the player.
-	 */
 
 	/*
-	 * Handle play show event
+	 * Handle select show event
 	 */
 	@Override
-	public void onPlayShowRequest() {
-		PlayerContext.getInstance().changeState(PlayState.getInstance());
+	public void onSelectShowRequest(Show show) {
+		PlayerContext.getInstance().changeState(SelectState.getInstance(show));
 	}
 
-	/*
-	 * Handle pause show event
-	 */
 	@Override
-	public void onPauseShowRequest() {
-		PlayerContext.getInstance().changeState(PauseState.getInstance());
+	public void onTimerTick(int timerValue) {
+		PlayerContext.getInstance().showTimeLeft(timerValue);
 	}
-
-	/*
-	 * Handle stop show event
-	 */
-	@Override
-	public void onStopShowRequest() {
-		PlayerContext.getInstance().changeState(StopState.getInstance());
-	}
-
-	/*
-	 * Handle fast forward show event
-	 */
-	@Override
-	public void onFastForwardRequest() {
-		PlayerContext.getInstance().changeState(FastForwardState.getInstance());
-	}
-
-	/*
-	 * Handle rewind show event
-	 */
-	@Override
-	public void onRewindRequest() {
-		PlayerContext.getInstance().changeState(RewindState.getInstance());
-	}
-
-	/*
-	 * The above methods will only work once a show has been selected. Which a show
-	 * being selected has not quite been implemented yet...
-	 */
 
 	/**
 	 * initialize the state
@@ -111,11 +79,18 @@ public class PlayerOnState extends PlayerState {
 	 */
 	@Override
 	public void enter() {
+		// Player turned on enters a state where there is 10 seconds to press a button
+		// on the controller. Otherwise the screen saver will be turned on
+		// timer = new Timer(this, 10);
 		PlayerContext.getInstance().showPlayerOn();
+		// PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
+		// timer.stop();
+		// timer = null;
 		PlayerContext.getInstance().showPlayerOff();
+		// PlayerContext.getInstance().showTimeLeft(0);
 	}
 }
