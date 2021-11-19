@@ -1,5 +1,7 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
+
 /**
  * 
  * @author Nathan Lantaigne-Goetsch
@@ -47,6 +49,14 @@ public abstract class PlayerState {
 	 * Specifies the actions to be taken when the OFF button is pressed
 	 */
 	public void onOffRequest() {
+
+	}
+
+	/*
+	 * Specifies the actions to be taken when a show is selected from the list of
+	 * shows below.
+	 */
+	public void onSelectShowRequest(Show show) {
 
 	}
 
