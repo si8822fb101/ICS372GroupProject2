@@ -1,5 +1,7 @@
 package edu.ics372.groupProject2.display;
 
+import edu.ics372.groupProject2.select.Show;
+
 /**
  * 
  * @author Nathan Lantaigne-Goetsch
@@ -24,7 +26,7 @@ package edu.ics372.groupProject2.display;
  * a lot of freedom to choose its display.
  */
 public interface PlayerDisplay {
-  /**
+	/**
 	 * Displays the show time remaining
 	 * 
 	 * @param time remaining time
@@ -44,7 +46,7 @@ public interface PlayerDisplay {
 	/**
 	 * Indicate that a show was selected
 	 */
-	public void showSelectedShow();
+	public void showSelectedShow(Show show);
 
 	/**
 	 * Indicate that the selected show is playing
@@ -80,4 +82,5 @@ public interface PlayerDisplay {
 	 * indicate that the screen saver is OFF
 	 */
 	public void showScreenSaverOff();
+
 }
