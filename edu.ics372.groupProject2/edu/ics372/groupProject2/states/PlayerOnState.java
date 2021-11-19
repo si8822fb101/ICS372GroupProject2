@@ -59,7 +59,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
-
+  
 	/*
 	 * Handle select show event
 	 */
