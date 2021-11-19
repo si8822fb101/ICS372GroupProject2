@@ -1,6 +1,8 @@
 package edu.ics372.groupProject2.states;
 
-* @author Nathan Lantainge-Goetsch
+/**
+ * 
+ * @author Nathan Lantainge-Goetsch
  * @Copyright (c) 2021
  
  * Redistribution and use with or without
