@@ -1,7 +1,8 @@
 package edu.ics372.groupProject2.select;
 
-import edu.ics372.groupProject2.states.PlayerContext;
-import javafx.event.Event;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 
@@ -10,20 +11,17 @@ import javafx.scene.control.ListView;
 //The list could be an ObservableList.
 //You could use the following code to select a show.
 
-public class SelectControl extends ListView<Show> {
-	public SelectControl() {
-		super(ShowList.getInstance().getShows()); // gets the ObservableList
-		setOnMouseClicked(new EventHandler<Event>() {
+public class SelectControl extends ListView<Show> implements EventHandler<ActionEvent> {
 
+	@Override
+	public void handle(ActionEvent arg0) {
+		ShowList.getInstance().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Show>() {
 			@Override
-			public void handle(Event arg0) {
-				System.out.println("clicked on event " + getSelectionModel().getSelectedItem());
-
-				Show show = (Show) getSelectionModel().getSelectedItem();
-				System.out.println(show);
-				PlayerContext.getInstance().onSelectShowRequest();
+			public void changed(ObservableValue<? extends Show> observable, Show oldValue, Show newValue) {
+				System.out.println(
+						"ListView selection changed from oldValue = " + oldValue + " to newValue = " + newValue);
 			}
 		});
-
 	}
 }
+
