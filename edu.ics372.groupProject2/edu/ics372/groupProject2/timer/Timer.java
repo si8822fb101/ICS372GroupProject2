@@ -14,9 +14,9 @@ public class Timer implements PropertyChangeListener {
 	 * @param timeValue the initial time value after which the timer runs out of
 	 *                  time.
 	 */
-	public Timer(Notifiable client) {
+	public Timer(Notifiable client, int timeValue) {
 		this.client = client;
-		this.timeValue = 10000;
+		this.timeValue = timeValue;
 		Clock.getInstance().addPropertyChangeListener(this);
 	}
 

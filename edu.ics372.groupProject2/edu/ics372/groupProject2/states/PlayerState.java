@@ -1,5 +1,7 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
+
 /**
  * 
  * @author Nathan Lantaigne-Goetsch
@@ -25,6 +27,9 @@ package edu.ics372.groupProject2.states;
  *
  */
 public abstract class PlayerState {
+
+	protected boolean isShowSelected;
+	protected Show showSelected;
 
 	/**
 	 * Initializes the state
@@ -89,7 +94,7 @@ public abstract class PlayerState {
 	/**
 	 * Specifies actions to be taken when a show is selected
 	 */
-	public void onSelectRequest(String showDetails) {
+	public void onSelectShowRequest(Show show) {
 
 	}
 

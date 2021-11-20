@@ -11,6 +11,7 @@ import edu.ics372.groupProject2.buttons.StopButton;
 import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.application.Application;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -93,6 +94,11 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		showList.getItems().add(new Show("n3", 30));
 		showList.getItems().add(new Show("n4", 40));
 		showList.getItems().add(new Show("n5", 50));
+		showList.getSelectionModel().selectedItemProperty()
+				.addListener((ObservableValue<? extends Show> ov, Show old_val, Show new_val) -> {
+					Show selectedShow = showList.getSelectionModel().getSelectedItem();
+					PlayerContext.getInstance().onSelectShowRequest(selectedShow);
+				});
 		statusPane.setStyle("-fx-background-color: white;");
 		statusText.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		mainPane.add(buttonPane, 0, 0);
@@ -136,9 +142,9 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showSelectedShow(String showDetails) {
+	public void showSelectedShow(Show showDetails) {
 		// showSelectedStatus.setText("Show selected yes");
-		statusText.setText("Status: Show selected [" + showDetails + "]");
+		statusText.setText("Status: Show selected [" + showDetails.toString() + "]");
 	}
 
 	@Override
