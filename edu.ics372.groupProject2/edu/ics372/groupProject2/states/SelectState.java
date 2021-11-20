@@ -55,6 +55,7 @@ public class SelectState extends PlayerState implements Notifiable {
 
 	@Override
 	public void enter() {
+		this.isShowSelected = true;
 		timer = new Timer(this, 10000);
 		PlayerContext.getInstance().showSelectedShow(this.showSelected);
 	}
