@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
@@ -26,7 +27,7 @@ import edu.ics372.groupProject2.timer.Timer;
  * Represents the play show state
  *
  */
-public class PlayState extends PlayerState {
+public class PlayState extends PlayerState implements Notifiable {
 	private static PlayState instance;
 	private Timer timer;
 
@@ -34,6 +35,7 @@ public class PlayState extends PlayerState {
 	 * Private constructor for the singleton pattern
 	 */
 	private PlayState() {
+		instance = this;
 	}
 
 	/**
@@ -69,7 +71,7 @@ public class PlayState extends PlayerState {
 	 */
 	@Override
 	public void onStopShowRequest() {
-		PlayerContext.getInstance().changeState(StopState.getInstance());
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());
 	}
 
 	/*
@@ -99,9 +101,7 @@ public class PlayState extends PlayerState {
 
 	@Override
 	public void enter() {
-		// timer = new Timer(this, getTimeOfSelectedShowHere);
-		// need to implement showTime field for specific show play lengths.
-		timer = new Timer(this, showTime);
+		timer = new Timer(this, this.showSelected.getTime());
 		PlayerContext.getInstance().showPlayingShow();
 		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
@@ -109,14 +109,7 @@ public class PlayState extends PlayerState {
 	@Override
 	public void leave() {
 		PlayerContext.getInstance().showStoppedShow();
-		// timer = null;
 		timer = null;
-
-		// timer could possibly be set to 10, so it can begin countdown for
-		// screen saver initializing
-		timer.addTimeValue(10);
-
-		// Possibly change showTimeLeft below to 0 or nothing at all
 		PlayerContext.getInstance().showTimeLeft(0);
 
 	}

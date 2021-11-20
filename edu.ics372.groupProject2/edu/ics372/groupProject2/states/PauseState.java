@@ -54,6 +54,11 @@ public class PauseState extends PlayerState {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
 
+	@Override
+	public void onStopShowRequest() {
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());
+	}
+
 	/*
 	 * Handle play show event
 	 */
