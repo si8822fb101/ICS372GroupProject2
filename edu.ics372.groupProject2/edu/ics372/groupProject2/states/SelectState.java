@@ -14,13 +14,11 @@ public class SelectState extends PlayerState implements Notifiable {
 
 	private static SelectState instance;
 	private Timer timer;
-	private String selectedShow;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	private SelectState(String selectedShow) {
-		this.selectedShow = selectedShow;
+	private SelectState() {
 		instance = this;
 	}
 
@@ -29,9 +27,9 @@ public class SelectState extends PlayerState implements Notifiable {
 	 * 
 	 * @return the object
 	 */
-	public static SelectState getInstance(String selectedShow) {
+	public static SelectState getInstance() {
 		if (instance == null) {
-			instance = new SelectState(selectedShow);
+			instance = new SelectState();
 		}
 		return instance;
 	}
@@ -58,7 +56,7 @@ public class SelectState extends PlayerState implements Notifiable {
 	@Override
 	public void enter() {
 		timer = new Timer(this, 10000);
-		PlayerContext.getInstance().showSelectedShow(this.selectedShow);
+		PlayerContext.getInstance().showSelectedShow(this.showSelected);
 	}
 
 	@Override
