@@ -66,4 +66,5 @@ public class SelectState extends PlayerState implements Notifiable {
 		timer.stop();
 		timer = null;
 	}
+
 }

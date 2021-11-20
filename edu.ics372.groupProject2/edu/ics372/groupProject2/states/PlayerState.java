@@ -101,6 +101,13 @@ public abstract class PlayerState {
 	}
 
 	/**
+	 * Process clock tick Generates the timer runs out event
+	 */
+	public void onTimerTick(int timerValue) {
+
+	}
+
+	/**
 	 * Specifies actions when a show ends
 	 */
 	public void onShowEnds() {

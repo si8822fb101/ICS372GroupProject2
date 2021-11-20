@@ -1,5 +1,9 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
+import edu.ics372.groupProject2.timer.Notifiable;
+import edu.ics372.groupProject2.timer.Timer;
+
 /**
  * 
  * @author Nathan Lantaigne-Goetsch
@@ -24,9 +28,10 @@ package edu.ics372.groupProject2.states;
  * Represents the player on state
  *
  */
-public class PlayerOnState extends PlayerState {
+public class PlayerOnState extends PlayerState implements Notifiable {
 
 	private static PlayerOnState instance;
+	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -54,20 +59,18 @@ public class PlayerOnState extends PlayerState {
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
-
+  
 	/*
-	 * Handle show selection request
+	 * Handle select show event
 	 */
 	@Override
-	public void onSelectRequest() {
-		PlayerContext.getInstance().changeState(SelectState.getInstance());
+	public void onSelectShowRequest(Show show) {
+		PlayerContext.getInstance().changeState(SelectState.getInstance(show));
 	}
 
-	/*
-	 * Handle 10 second times running out
-	 */
-	public void onTimerRunsOut() {
-		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+	@Override
+	public void onTimerTick(int timerValue) {
+		PlayerContext.getInstance().showTimeLeft(timerValue);
 	}
 
 	/**
@@ -76,11 +79,18 @@ public class PlayerOnState extends PlayerState {
 	 */
 	@Override
 	public void enter() {
+		// Player turned on enters a state where there is 10 seconds to press a button
+		// on the controller. Otherwise the screen saver will be turned on
+		// timer = new Timer(this, 10);
 		PlayerContext.getInstance().showPlayerOn();
+		// PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
-
+		// timer.stop();
+		// timer = null;
+		PlayerContext.getInstance().showPlayerOff();
+		// PlayerContext.getInstance().showTimeLeft(0);
 	}
 }
