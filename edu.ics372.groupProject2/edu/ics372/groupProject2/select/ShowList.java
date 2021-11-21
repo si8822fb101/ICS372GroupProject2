@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.select;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ShowList {
@@ -10,6 +11,10 @@ public class ShowList {
 	 * Private for the singleton pattern
 	 */
 	private ShowList() {
+		shows = FXCollections.observableArrayList();
+		for (int i = 0; i < 5; i++) {
+			shows.add(new Show("n" + (i + 1), (i + 1) * 10));
+		}
 	}
 
 	/**

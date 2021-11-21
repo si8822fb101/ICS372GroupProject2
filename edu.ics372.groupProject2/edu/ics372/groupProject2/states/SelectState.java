@@ -50,14 +50,14 @@ public class SelectState extends PlayerState implements Notifiable {
 	 * Process clock ticks Generates the timer runs out event
 	 */
 	public void onTimerRunsOut() {
-		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+//		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
 	@Override
 	public void enter() {
-		this.isShowSelected = true;
+		isShowSelected = true;
 		timer = new Timer(this, 10000);
-		PlayerContext.getInstance().showSelectedShow(this.showSelected);
+		PlayerContext.getInstance().showSelectedShow(showSelected);
 	}
 
 	@Override
