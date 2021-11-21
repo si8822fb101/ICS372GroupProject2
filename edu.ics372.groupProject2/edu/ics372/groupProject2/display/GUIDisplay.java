@@ -8,14 +8,13 @@ import edu.ics372.groupProject2.buttons.PlayerOffButton;
 import edu.ics372.groupProject2.buttons.PlayerOnButton;
 import edu.ics372.groupProject2.buttons.RewindButton;
 import edu.ics372.groupProject2.buttons.StopButton;
+import edu.ics372.groupProject2.select.SelectControl;
 import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.application.Application;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -54,7 +53,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	private GUIButton fastForwardShow;
 	private GUIButton stopShow;
 	private Label statusText;
-	private ListView<Show> showList;
+	private SelectControl showList;
 	// Hold on to these text vars
 	private Text timerValue = new Text("            ");
 
@@ -73,7 +72,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		statusText = new Label("Status: Player off");
 		statusText.setMinWidth(50);
 		statusText.setMinHeight(50);
-		showList = new ListView<Show>();
+		showList = new SelectControl();
 		GridPane mainPane = new GridPane();
 		mainPane.setHgap(10);
 		mainPane.setVgap(10);
@@ -89,16 +88,6 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		// to add list view control to status pane
 		statusPane.add(statusText, 0, 0);
 		statusPane.add(showList, 0, 1);
-		showList.getItems().add(new Show("n1", 10));
-		showList.getItems().add(new Show("n2", 20));
-		showList.getItems().add(new Show("n3", 30));
-		showList.getItems().add(new Show("n4", 40));
-		showList.getItems().add(new Show("n5", 50));
-		showList.getSelectionModel().selectedItemProperty()
-				.addListener((ObservableValue<? extends Show> ov, Show old_val, Show new_val) -> {
-					Show selectedShow = showList.getSelectionModel().getSelectedItem();
-					PlayerContext.getInstance().onSelectShowRequest(selectedShow);
-				});
 		statusPane.setStyle("-fx-background-color: white;");
 		statusText.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		mainPane.add(buttonPane, 0, 0);

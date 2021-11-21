@@ -69,7 +69,9 @@ public class PlayState extends PlayerState {
 	 */
 	@Override
 	public void onStopShowRequest() {
-		PlayerContext.getInstance().changeState(StopState.getInstance());
+		this.isShowSelected = false;
+		this.showSelected = null;
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	/*
@@ -94,14 +96,14 @@ public class PlayState extends PlayerState {
 	@Override
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().showTimeLeft(0);
-		PlayerContext.getInstance().changeState(StopState.getInstance());
+		this.onStopShowRequest();
 	}
 
 	@Override
 	public void enter() {
 		// timer = new Timer(this, getTimeOfSelectedShowHere);
 		// need to implement showTime field for specific show play lengths.
-		timer = new Timer(this, showTime);
+//		timer = new Timer(this, showTime);
 		PlayerContext.getInstance().showPlayingShow();
 		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}

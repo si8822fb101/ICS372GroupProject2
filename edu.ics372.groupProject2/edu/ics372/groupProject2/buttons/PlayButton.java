@@ -1,6 +1,6 @@
-package edu.ics372.groupproject2.buttons;
+package edu.ics372.groupProject2.buttons;
 
-import edu.ics372.groupproject2.states.PlayerContext;
+import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
