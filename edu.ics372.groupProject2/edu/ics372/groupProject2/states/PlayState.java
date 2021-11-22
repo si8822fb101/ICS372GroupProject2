@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
@@ -41,10 +42,11 @@ public class PlayState extends PlayerState {
 	 * 
 	 * @return the object
 	 */
-	public static PlayState getInstance() {
+	public static PlayState getInstance(Show show) {
 		if (instance == null) {
 			instance = new PlayState();
 		}
+		showSelected = show;
 		return instance;
 	}
 
