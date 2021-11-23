@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
@@ -26,7 +27,7 @@ import edu.ics372.groupProject2.timer.Timer;
  * Represents the play show state
  *
  */
-public class PlayState extends PlayerState {
+public class PlayState extends PlayerState implements Notifiable {
 	private static PlayState instance;
 	private Timer timer;
 
@@ -101,7 +102,7 @@ public class PlayState extends PlayerState {
 	public void enter() {
 		// timer = new Timer(this, getTimeOfSelectedShowHere);
 		// need to implement showTime field for specific show play lengths.
-		timer = new Timer(this, showTime);
+		timer = new Timer(this, PlayerContext.getInstance().getShowSelected().getTime());
 		PlayerContext.getInstance().showPlayingShow();
 		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}

@@ -1,6 +1,5 @@
 package edu.ics372.groupProject2.states;
 
-import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
@@ -28,13 +27,11 @@ public class SelectState extends PlayerState implements Notifiable {
 	 * 
 	 * @return the object
 	 */
-	public static SelectState getInstance(Show show) {
+	public static SelectState getInstance() {
 		if (instance == null) {
 			instance = new SelectState();
 		}
-		if (show != null) {
-			showSelected = show;
-		}
+
 		return instance;
 	}
 
@@ -47,7 +44,7 @@ public class SelectState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onPlayShowRequest() {
-		PlayerContext.getInstance().changeState(PlayState.getInstance(show));
+		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 
 	/*
@@ -59,9 +56,8 @@ public class SelectState extends PlayerState implements Notifiable {
 
 	@Override
 	public void enter() {
-		this.isShowSelected = true;
 		timer = new Timer(this, 10000);
-		PlayerContext.getInstance().showSelectedShow(this.showSelected);
+		PlayerContext.getInstance().showSelectedShow();
 	}
 
 	@Override
