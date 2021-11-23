@@ -32,6 +32,8 @@ public class PlayerContext {
 	private PlayerDisplay display;
 	private PlayerState currentState;
 	private static PlayerContext instance;
+	protected static boolean isShowSelected;
+	protected static Show showSelected;
 
 	/**
 	 * Make it a singleton
@@ -107,6 +109,8 @@ public class PlayerContext {
 	 * Process stop show STOP request
 	 */
 	public void onStopShowRequest() {
+		this.showSelected = null;
+		this.isShowSelected = false;
 		currentState.onStopShowRequest();
 	}
 
@@ -135,7 +139,9 @@ public class PlayerContext {
 	 * Process select show request
 	 */
 	public void onSelectShowRequest(Show showDetails) {
-		currentState.onSelectShowRequest(showDetails);
+		this.showSelected = showDetails;
+		this.isShowSelected = true;
+		currentState.onSelectShowRequest();
 	}
 
 	/**
@@ -171,8 +177,8 @@ public class PlayerContext {
 	 * from changes to the way the system utilizes the state changes.
 	 * 
 	 */
-	public void showSelectedShow(Show showDetails) {
-		display.showSelectedShow(showDetails);
+	public void showSelectedShow() {
+		display.showSelectedShow(this.getShowSelected());
 	}
 
 	/**
@@ -236,5 +242,13 @@ public class PlayerContext {
 	 */
 	public void showScreenSaverOff() {
 		display.showScreenSaverOff();
+	}
+
+	public Show getShowSelected() {
+		return this.showSelected;
+	}
+
+	public boolean isShowSelected() {
+		return this.isShowSelected;
 	}
 }

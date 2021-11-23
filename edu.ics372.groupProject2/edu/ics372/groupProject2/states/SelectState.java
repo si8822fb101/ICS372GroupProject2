@@ -31,9 +31,14 @@ public class SelectState extends PlayerState implements Notifiable {
 		if (instance == null) {
 			instance = new SelectState();
 		}
+
 		return instance;
 	}
 
+	/**
+	 * Handle Of request
+	 */
+	@Override
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
@@ -46,6 +51,14 @@ public class SelectState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 
+	/**
+	 * Handle selecting a show
+	 */
+	@Override
+	public void onSelectShowRequest() {
+		PlayerContext.getInstance().changeState(SelectState.getInstance());
+	}
+
 	/*
 	 * Process clock ticks Generates the timer runs out event
 	 */
@@ -55,9 +68,8 @@ public class SelectState extends PlayerState implements Notifiable {
 
 	@Override
 	public void enter() {
-		isShowSelected = true;
 		timer = new Timer(this, 10000);
-		PlayerContext.getInstance().showSelectedShow(showSelected);
+		PlayerContext.getInstance().showSelectedShow();
 	}
 
 	@Override
