@@ -28,8 +28,8 @@ import edu.ics372.groupProject2.select.Show;
  */
 public abstract class PlayerState {
 
-	protected boolean isShowSelected;
-	protected Show showSelected;
+	protected static boolean isShowSelected;
+	protected static Show showSelected;
 
 	/**
 	 * Initializes the state
