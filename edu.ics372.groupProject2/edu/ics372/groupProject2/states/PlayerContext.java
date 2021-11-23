@@ -109,6 +109,8 @@ public class PlayerContext {
 	 * Process stop show STOP request
 	 */
 	public void onStopShowRequest() {
+		this.showSelected = null;
+		this.isShowSelected = false;
 		currentState.onStopShowRequest();
 	}
 

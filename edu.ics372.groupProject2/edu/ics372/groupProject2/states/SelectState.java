@@ -35,6 +35,10 @@ public class SelectState extends PlayerState implements Notifiable {
 		return instance;
 	}
 
+	/**
+	 * Handle Of request
+	 */
+	@Override
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
@@ -45,6 +49,14 @@ public class SelectState extends PlayerState implements Notifiable {
 	@Override
 	public void onPlayShowRequest() {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
+	}
+
+	/**
+	 * Handle selecting a show
+	 */
+	@Override
+	public void onSelectShowRequest() {
+		PlayerContext.getInstance().changeState(SelectState.getInstance());
 	}
 
 	/*

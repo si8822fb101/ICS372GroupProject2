@@ -70,8 +70,6 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onStopShowRequest() {
-		this.isShowSelected = false;
-		this.showSelected = null;
 		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 

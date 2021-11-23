@@ -69,7 +69,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		pauseShow = new PauseButton("Pause");
 		fastForwardShow = new FastForwardButton("FF");
 		rewindShow = new RewindButton("Rew");
-		statusText = new Label("Status: Player off");
+		statusText = new Label("Status: Player OFF");
 		statusText.setMinWidth(50);
 		statusText.setMinHeight(50);
 		showList = new SelectControl();
