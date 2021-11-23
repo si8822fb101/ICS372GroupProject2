@@ -70,7 +70,9 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onStopShowRequest() {
-		PlayerContext.getInstance().changeState(StopState.getInstance());
+		this.isShowSelected = false;
+		this.showSelected = null;
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	/*
@@ -95,7 +97,7 @@ public class PlayState extends PlayerState implements Notifiable {
 	@Override
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().showTimeLeft(0);
-		PlayerContext.getInstance().changeState(StopState.getInstance());
+		this.onStopShowRequest();
 	}
 
 	@Override
