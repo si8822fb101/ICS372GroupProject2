@@ -4,7 +4,7 @@ import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * Represent the Completed state
- * 
+ *
  * @author lengvang
  *
  */
@@ -22,7 +22,7 @@ public class CompleteState extends PlayerState implements Notifiable {
 
 	/**
 	 * For the singleton pattern
-	 * 
+	 *
 	 * @return the object
 	 */
 	public static CompleteState getInstance() {
@@ -39,7 +39,7 @@ public class CompleteState extends PlayerState implements Notifiable {
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
- 
+
 	/**
 	 * Handle Player play event
 	 */
@@ -54,11 +54,11 @@ public class CompleteState extends PlayerState implements Notifiable {
 	public void onStopRequest() {
 		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
-	
+
 
 	/**
 	 * initialize the state
-	 * 
+	 *
 	 */
 
 	@Override
