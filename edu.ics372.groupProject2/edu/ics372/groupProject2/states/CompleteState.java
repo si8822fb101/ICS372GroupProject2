@@ -1,4 +1,6 @@
 package edu.ics372.groupProject2.states;
+import edu.ics372.groupProject2.timer.Notifiable;
+import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * Represent the Completed state
@@ -7,16 +9,17 @@ package edu.ics372.groupProject2.states;
  *
  */
 
-public class CompleteState extends PlayerState {
+public class CompleteState extends PlayerState implements Notifiable {
 	private static CompleteState instance;
-	
+	private Timer timer;
+
 	/**
 	 * Private constructor for the singleton pattern
 	 */
 	private CompleteState() {
-		
+
 	}
-	
+
 	/**
 	 * For the singleton pattern
 	 * 
@@ -28,7 +31,7 @@ public class CompleteState extends PlayerState {
 		}
 		return instance;
 	}
-	
+
 	/*
 	 * Handle player off event
 	 */
@@ -36,23 +39,24 @@ public class CompleteState extends PlayerState {
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
-	
+ 
 	/**
-	 * Handle Player on event
+	 * Handle Player play event
 	 */
-	
+	@Override
 	public void onPlayShowRequest() {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
-	
+
 	/**
 	 * Handle Player stop event
 	 */
-	
-	public void onStopRequest() {
-		PlayerContext.getInstance().changeState(PlayerSelectState.getInstance());
+	@Override
+	public void onStopShowRequest() {
+		PlayerContext.getInstance().changeState(SelectState.getInstance());
 	}
 	
+
 	/**
 	 * initialize the state
 	 * 
@@ -60,15 +64,15 @@ public class CompleteState extends PlayerState {
 
 	@Override
 	public void enter() {
-		PlayerContext.getInstance().showStoppedShow();
+		timer = new Timer(this, 10000);
+		PlayerContext.getInstance().showScreenSaverOn();
 
 	}
 
 	@Override
 	public void leave() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
 
 }
