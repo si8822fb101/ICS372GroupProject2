@@ -4,10 +4,10 @@ import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
- * 
+ *
  * @author Nathan Lantaigne-Goetsch
  * @Copyright (c) 2021
- 
+
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -20,7 +20,7 @@ import edu.ics372.groupProject2.timer.Timer;
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
+ * and are not responsible for any loss or damage resulting from its use.
  */
 
 /**
@@ -42,7 +42,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 
 	/**
 	 * For the singleton pattern
-	 * 
+	 *
 	 * @return the object
 	 */
 	public static PlayerOnState getInstance() {
@@ -77,7 +77,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 
 	/**
 	 * initialize the state
-	 * 
+	 *
 	 */
 	@Override
 	public void enter() {

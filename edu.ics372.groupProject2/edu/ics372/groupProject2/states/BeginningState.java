@@ -4,9 +4,9 @@ import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
- * 
+ *
  * Represents the idle; show beginning state
- * 
+ *
  * @author Qaalib Farah
  *
  */
@@ -24,7 +24,7 @@ public class BeginningState extends PlayerState implements Notifiable {
 
 	/**
 	 * For the singleton pattern
-	 * 
+	 *
 	 * @return the object
 	 */
 	public static BeginningState getInstance() {
@@ -73,10 +73,8 @@ public class BeginningState extends PlayerState implements Notifiable {
 //		isShowSelected = true;
 //		PlayerContext.getInstance().showSelectedShow(showSelected);
 		PlayerContext.getInstance().showSelectedShow();
-
 		timer = new Timer(this, 10000);
 //		PlayerContext.getInstance().showBeginningShow();
-
 	}
 
 	@Override
