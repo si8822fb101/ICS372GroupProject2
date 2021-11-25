@@ -5,20 +5,20 @@ import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * 
- * Represents the idle; show selected state
+ * Represents the idle; show beginning state
  * 
  * @author Qaalib Farah
  *
  */
-public class SelectState extends PlayerState implements Notifiable {
+public class BeginningState extends PlayerState implements Notifiable {
 
-	private static SelectState instance;
+	private static BeginningState instance;
 	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	private SelectState() {
+	private BeginningState() {
 		instance = this;
 	}
 
@@ -27,9 +27,9 @@ public class SelectState extends PlayerState implements Notifiable {
 	 * 
 	 * @return the object
 	 */
-	public static SelectState getInstance() {
+	public static BeginningState getInstance() {
 		if (instance == null) {
-			instance = new SelectState();
+			instance = new BeginningState();
 		}
 
 		return instance;
@@ -56,7 +56,7 @@ public class SelectState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onSelectShowRequest() {
-		PlayerContext.getInstance().changeState(SelectState.getInstance());
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
 	/*
@@ -69,7 +69,7 @@ public class SelectState extends PlayerState implements Notifiable {
 	@Override
 	public void enter() {
 		timer = new Timer(this, 10000);
-		PlayerContext.getInstance().showSelectedShow();
+		PlayerContext.getInstance().showBeginningShow();
 	}
 
 	@Override

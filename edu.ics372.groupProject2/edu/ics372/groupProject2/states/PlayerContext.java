@@ -177,8 +177,8 @@ public class PlayerContext {
 	 * from changes to the way the system utilizes the state changes.
 	 * 
 	 */
-	public void showSelectedShow() {
-		display.showSelectedShow(this.getShowSelected());
+	public void showBeginningShow() {
+		display.showBeginningShow(this.getShowSelected());
 	}
 
 	/**

@@ -51,9 +51,8 @@ public class CompleteState extends PlayerState implements Notifiable {
 	/**
 	 * Handle Player stop event
 	 */
-	@Override
-	public void onStopShowRequest() {
-		PlayerContext.getInstance().changeState(SelectState.getInstance());
+	public void onStopRequest() {
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 	
 
