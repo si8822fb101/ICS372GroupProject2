@@ -50,7 +50,7 @@ public class CompleteState extends PlayerState {
 	 */
 
 	public void onStopRequest() {
-		PlayerContext.getInstance().changeState(SelectState.getInstance());
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
 	/**
