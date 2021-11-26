@@ -69,7 +69,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		pauseShow = new PauseButton("Pause");
 		fastForwardShow = new FastForwardButton("FF");
 		rewindShow = new RewindButton("Rew");
-		statusText = new Label("Status: Player off");
+		statusText = new Label("Status: Player OFF");
 		statusText.setMinWidth(50);
 		statusText.setMinHeight(50);
 		showList = new SelectControl();
@@ -131,9 +131,9 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showSelectedShow(Show showDetails) {
+	public void showBeginningShow(Show showDetails) {
 		// showSelectedStatus.setText("Show selected yes");
-		statusText.setText("Status: Show selected [" + showDetails.toString() + "]");
+		statusText.setText("" + showDetails.getName() + " " + showDetails.getTime() + " seconds left.");
 	}
 
 	@Override

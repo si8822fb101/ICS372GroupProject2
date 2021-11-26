@@ -46,7 +46,7 @@ public interface PlayerDisplay {
 	/**
 	 * Indicate that a show was selected
 	 */
-	public void showSelectedShow(Show showDetails);
+	public void showBeginningShow(Show showDetails);
 
 	/**
 	 * Indicate that the selected show is playing

@@ -64,12 +64,17 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	 */
 	@Override
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void onSelectShowRequest(Show show) {
 		showSelected = show;
 =======
 	public void onSelectShowRequest() {
 >>>>>>> 53dba9b (revamped the design)
 		PlayerContext.getInstance().changeState(SelectState.getInstance());
+=======
+	public void onSelectShowRequest() {
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());
+>>>>>>> main
 	}
 
 	@Override

@@ -5,20 +5,20 @@ import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * 
- * Represents the idle; show selected state
+ * Represents the idle; show beginning state
  * 
  * @author Qaalib Farah
  *
  */
-public class SelectState extends PlayerState implements Notifiable {
+public class BeginningState extends PlayerState implements Notifiable {
 
-	private static SelectState instance;
+	private static BeginningState instance;
 	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	private SelectState() {
+	private BeginningState() {
 		instance = this;
 	}
 
@@ -27,14 +27,18 @@ public class SelectState extends PlayerState implements Notifiable {
 	 * 
 	 * @return the object
 	 */
-	public static SelectState getInstance() {
+	public static BeginningState getInstance() {
 		if (instance == null) {
-			instance = new SelectState();
+			instance = new BeginningState();
 		}
 
 		return instance;
 	}
 
+	/**
+	 * Handle Of request
+	 */
+	@Override
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
@@ -47,6 +51,14 @@ public class SelectState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 
+	/**
+	 * Handle selecting a show
+	 */
+	@Override
+	public void onSelectShowRequest() {
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());
+	}
+
 	/*
 	 * Process clock ticks Generates the timer runs out event
 	 */
@@ -56,6 +68,7 @@ public class SelectState extends PlayerState implements Notifiable {
 
 	@Override
 	public void enter() {
+<<<<<<< HEAD:edu.ics372.groupProject2/edu/ics372/groupProject2/states/SelectState.java
 <<<<<<< HEAD
 		isShowSelected = true;
 		timer = new Timer(this, 10000);
@@ -64,6 +77,10 @@ public class SelectState extends PlayerState implements Notifiable {
 		timer = new Timer(this, 10000);
 		PlayerContext.getInstance().showSelectedShow();
 >>>>>>> 53dba9b (revamped the design)
+=======
+		timer = new Timer(this, 10000);
+		PlayerContext.getInstance().showBeginningShow();
+>>>>>>> main:edu.ics372.groupProject2/edu/ics372/groupProject2/states/BeginningState.java
 	}
 
 	@Override

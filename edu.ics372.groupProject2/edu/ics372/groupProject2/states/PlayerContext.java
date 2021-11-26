@@ -109,6 +109,8 @@ public class PlayerContext {
 	 * Process stop show STOP request
 	 */
 	public void onStopShowRequest() {
+		this.showSelected = null;
+		this.isShowSelected = false;
 		currentState.onStopShowRequest();
 	}
 
@@ -175,8 +177,13 @@ public class PlayerContext {
 	 * from changes to the way the system utilizes the state changes.
 	 * 
 	 */
+<<<<<<< HEAD
 	public void showSelectedShow() {
 		display.showSelectedShow(this.getShowSelected());
+=======
+	public void showBeginningShow() {
+		display.showBeginningShow(this.getShowSelected());
+>>>>>>> main
 	}
 
 	/**

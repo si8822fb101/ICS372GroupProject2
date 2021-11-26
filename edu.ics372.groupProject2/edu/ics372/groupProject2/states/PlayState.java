@@ -74,7 +74,6 @@ public class PlayState extends PlayerState implements Notifiable {
 		this.isShowSelected = false;
 		this.showSelected = null;
 		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
-
 	}
 
 	/*
@@ -112,7 +111,6 @@ public class PlayState extends PlayerState implements Notifiable {
 //(select control update)
 
 		timer = new Timer(this, PlayerContext.getInstance().getShowSelected().getTime());
-
 		PlayerContext.getInstance().showPlayingShow();
 		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
