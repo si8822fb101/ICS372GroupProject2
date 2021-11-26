@@ -71,7 +71,13 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onStopShowRequest() {
+<<<<<<< HEAD
 		PlayerContext.getInstance().changeState(CompleteState.getInstance());
+=======
+		this.isShowSelected = false;
+		this.showSelected = null;
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
+>>>>>>> ee29f6f (select control update)
 	}
 
 	/*
@@ -96,12 +102,18 @@ public class PlayState extends PlayerState implements Notifiable {
 	@Override
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().showTimeLeft(0);
-		PlayerContext.getInstance().changeState(StopState.getInstance());
+		this.onStopShowRequest();
 	}
 
 	@Override
 	public void enter() {
+<<<<<<< HEAD
 		timer = new Timer(this, this.showSelected.getTime());
+=======
+		// timer = new Timer(this, getTimeOfSelectedShowHere);
+		// need to implement showTime field for specific show play lengths.
+//		timer = new Timer(this, showTime);
+>>>>>>> ee29f6f (select control update)
 		PlayerContext.getInstance().showPlayingShow();
 		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
