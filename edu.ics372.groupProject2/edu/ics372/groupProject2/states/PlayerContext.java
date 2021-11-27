@@ -4,10 +4,10 @@ import edu.ics372.groupProject2.display.PlayerDisplay;
 import edu.ics372.groupProject2.select.Show;
 
 /**
- * 
+ *
  * @author Nathan Lantaigne-Goetsch
  * @Copyright (c) 2021
- 
+
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -20,7 +20,7 @@ import edu.ics372.groupProject2.select.Show;
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
+ * and are not responsible for any loss or damage resulting from its use.
  */
 
 /**
@@ -45,7 +45,7 @@ public class PlayerContext {
 
 	/**
 	 * Return the instance
-	 * 
+	 *
 	 * @return the object
 	 */
 	public static PlayerContext getInstance() {
@@ -57,7 +57,7 @@ public class PlayerContext {
 
 	/**
 	 * The display could change. So we have to get its refrence.
-	 * 
+	 *
 	 * @param display The current display object
 	 */
 	public void setDisplay(PlayerDisplay display) {
@@ -75,7 +75,7 @@ public class PlayerContext {
 
 	/**
 	 * Called from the states to change the current state
-	 * 
+	 *
 	 * @param nextState the next state
 	 */
 	public void changeState(PlayerState nextState) {
@@ -89,6 +89,13 @@ public class PlayerContext {
 	 */
 	public void onOnRequest() {
 		currentState.onOnRequest();
+	}
+
+	/**
+	 * Process transition to BeginningState request
+	 */
+	public void onBeginningStateRequest() {
+		currentState.onBeginningStateRequest();
 	}
 
 	/**
@@ -147,7 +154,7 @@ public class PlayerContext {
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 * @param time time left for cooking
 	 */
 	public void showTimeLeft(int time) {
@@ -157,7 +164,7 @@ public class PlayerContext {
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showPlayerOn() {
 		display.showPlayerOn();
@@ -166,7 +173,7 @@ public class PlayerContext {
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showPlayerOff() {
 		display.showPlayerOff();
@@ -175,25 +182,28 @@ public class PlayerContext {
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
-	public void showBeginningShow() {
-		display.showBeginningShow(this.getShowSelected());
+
+	public void showSelectedShow() {
+		display.showSelectedShow(this.getShowSelected());
+
+
 	}
 
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showPlayingShow() {
-		display.showPlayingShow();
+		display.showPlayingShow(this.showSelected);
 	}
 
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showPausedShow() {
 		display.showPausedShow();
@@ -202,7 +212,7 @@ public class PlayerContext {
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showStoppedShow() {
 		display.showStoppedShow();
@@ -211,7 +221,7 @@ public class PlayerContext {
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showShowRewinding() {
 		display.showShowRewinding();
@@ -220,7 +230,7 @@ public class PlayerContext {
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showShowFastForwarding() {
 		display.showShowFastwording();
@@ -229,16 +239,20 @@ public class PlayerContext {
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showScreenSaverOn() {
 		display.showScreenSaverOn();
 	}
 
+	public void showStatusBeginningState() {
+		display.showBeginningStateStatus();
+	}
+
 	/**
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
-	 * 
+	 *
 	 */
 	public void showScreenSaverOff() {
 		display.showScreenSaverOff();

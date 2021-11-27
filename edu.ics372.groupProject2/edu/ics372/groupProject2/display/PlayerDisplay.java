@@ -82,4 +82,16 @@ public interface PlayerDisplay {
 	 * indicate that the screen saver is OFF
 	 */
 	public void showScreenSaverOff();
+
+	/**
+	 * shows the selected show
+	 */
+	public void showSelectedShow(Show showSelected);
+
+	/**
+	 * shows the selected show
+	 */
+	public void showPlayingShow(Show showDetails);
+
+	public void showBeginningStateStatus(); // testing method signature
 }

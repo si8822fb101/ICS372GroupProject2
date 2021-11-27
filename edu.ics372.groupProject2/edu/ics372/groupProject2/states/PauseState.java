@@ -18,13 +18,14 @@ package edu.ics372.groupProject2.states;
  * and are not responsible for any loss or damage resulting from its use.  
  */
 
+import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * Represents the pause show state
  *
  */
-public class PauseState extends PlayerState {
+public class PauseState extends PlayerState implements Notifiable { // Notifiable implementation?
 	private static PauseState instance;
 	private Timer timer;
 
@@ -54,6 +55,11 @@ public class PauseState extends PlayerState {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
 
+	@Override
+	public void onStopShowRequest() {
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());
+	}
+
 	/*
 	 * Handle play show event
 	 */
@@ -71,6 +77,12 @@ public class PauseState extends PlayerState {
 	@Override
 	public void leave() {
 		PlayerContext.getInstance().showStoppedShow();
+	}
+
+	@Override
+	public void timerTicked(int timeLeft) { // not sure if if there is a need to implement timerTicked
+		// TODO Auto-generated method stub
+
 	}
 
 }
