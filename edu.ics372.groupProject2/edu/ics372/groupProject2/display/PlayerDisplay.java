@@ -1,6 +1,6 @@
-package edu.ics372.groupProject2.display;
+package edu.ics372.groupproject2.display;
 
-import edu.ics372.groupProject2.select.Show;
+import edu.ics372.groupproject2.select.Show;
 
 /**
  * 
