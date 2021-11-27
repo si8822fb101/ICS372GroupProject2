@@ -75,6 +75,12 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().showTimeLeft(timerValue);
 	}
 
+	@Override
+	public void onTimerTicked(int timeLeft) {
+		// TODO Auto-generated method stub
+
+	}
+
 	/**
 	 * initialize the state
 	 *
@@ -95,4 +101,5 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().showPlayerOff();
 		// PlayerContext.getInstance().showTimeLeft(0);
 	}
+
 }

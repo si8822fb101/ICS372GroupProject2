@@ -60,6 +60,12 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 		PlayerContext.getInstance().changeState(CompleteState.getInstance());
 	}
 
+	@Override
+	public void onTimerTicked(int timeLeft) {
+		// TODO Auto-generated method stub
+
+	}
+
 	/*
 	 * Handle play show event
 	 */
@@ -77,12 +83,6 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 	@Override
 	public void leave() {
 		PlayerContext.getInstance().showStoppedShow();
-	}
-
-	@Override
-	public void timerTicked(int timeLeft) { // not sure if if there is a need to implement timerTicked
-		// TODO Auto-generated method stub
-
 	}
 
 }

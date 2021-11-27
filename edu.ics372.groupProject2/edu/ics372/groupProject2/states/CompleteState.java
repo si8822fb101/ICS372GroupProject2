@@ -1,4 +1,5 @@
 package edu.ics372.groupProject2.states;
+
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
@@ -55,6 +56,11 @@ public class CompleteState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
+	@Override
+	public void onTimerTicked(int timeLeft) {
+		// TODO Auto-generated method stub
+
+	}
 
 	/**
 	 * initialize the state

@@ -69,6 +69,12 @@ public class BeginningState extends PlayerState implements Notifiable {
 	}
 
 	@Override
+	public void onTimerTicked(int timeLeft) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public void enter() {
 //		isShowSelected = true;
 //		PlayerContext.getInstance().showSelectedShow(showSelected);

@@ -191,4 +191,10 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		statusText.setText("Status: Selected Show " + showDetails.getName());
 	}
 
+	@Override
+	public void showPlayingShow() {
+		// TODO Auto-generated method stub
+
+	}
+
 }
