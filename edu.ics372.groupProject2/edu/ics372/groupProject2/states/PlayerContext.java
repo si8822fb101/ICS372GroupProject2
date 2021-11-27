@@ -33,6 +33,9 @@ public class PlayerContext {
 	private PlayerState currentState;
 	private static PlayerContext instance;
 
+	private static boolean isShowSelected;
+	private static Show showSelected;
+
 	/**
 	 * Make it a singleton
 	 */
@@ -107,7 +110,7 @@ public class PlayerContext {
 	 * Process play show PLAY request
 	 */
 	public void onPlayShowRequest() {
-
+		currentState.onPlayShowRequest();
 	}
 
 	/**
@@ -236,5 +239,13 @@ public class PlayerContext {
 	 */
 	public void showScreenSaverOff() {
 		display.showScreenSaverOff();
+	}
+
+	public Show getShowSelected() {
+		return this.showSelected;
+	}
+
+	public boolean isShowSelected() {
+		return this.isShowSelected;
 	}
 }
