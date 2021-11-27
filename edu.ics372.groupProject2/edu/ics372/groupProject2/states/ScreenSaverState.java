@@ -55,14 +55,12 @@ public class ScreenSaverState extends PlayerState {
 
 	@Override
 	public void enter() {
-		// TODO Auto-generated method stub
-
+		PlayerContext.getInstance().showScreenSaverOn();
 	}
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
-
+		PlayerContext.getInstance().showPlayerOn();
 	}
 
 }
