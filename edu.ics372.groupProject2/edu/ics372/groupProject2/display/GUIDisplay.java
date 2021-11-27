@@ -8,15 +8,12 @@ import edu.ics372.groupProject2.buttons.PlayerOffButton;
 import edu.ics372.groupProject2.buttons.PlayerOnButton;
 import edu.ics372.groupProject2.buttons.RewindButton;
 import edu.ics372.groupProject2.buttons.StopButton;
-import edu.ics372.groupproject2.select.SelectControl;
-import edu.ics372.groupproject2.select.Show;
-import edu.ics372.groupproject2.states.PlayerContext;
+import edu.ics372.groupProject2.select.SelectControl;
+import edu.ics372.groupProject2.select.Show;
+import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.application.Application;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -58,28 +55,32 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	private GUIButton rewindShow;
 	private GUIButton fastForwardShow;
 	private GUIButton stopShow;
-	private Label statusText;
-	private ListView<Show> showList;
-	private SelectControl selectControl;
+	private Text statusText;
+	// private ListView<Show> showList;//UPDATING
+	private SelectControl showList;
 	// Hold on to these text vars
-	private Text timerValue = new Text("            ");
+	private Text timerValue;
 
 	/**
 	 * Sets up the interface
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		playerOn = new PlayerOnButton("On");// UPDATED CLASS NAME TO PlayerOnButton not: onButton
-		playerOff = new PlayerOffButton("Off");// UPDATED CLASS NAME TO PlayerOffButton not: offButton
+		playerOn = new PlayerOnButton("On");
+		playerOff = new PlayerOffButton("Off");
 		playShow = new PlayButton("Play");
 		stopShow = new StopButton("Stop");
 		pauseShow = new PauseButton("Pause");
 		fastForwardShow = new FastForwardButton("FF");
 		rewindShow = new RewindButton("Rew");
-		statusText = new Label("Status: Player off");
-		statusText.setMinWidth(50);
-		statusText.setMinHeight(50);
-		showList = new ListView<Show>();
+		statusText = new Text("Status: Player off");
+		timerValue = new Text("         ");
+		showTimeLeft(0);
+		statusText.minWidth(50);
+		statusText.minHeight(50);
+		timerValue.minWidth(5);
+		timerValue.minHeight(5);
+		showList = new SelectControl();
 		GridPane mainPane = new GridPane();
 		mainPane.setHgap(10);
 		mainPane.setVgap(10);
@@ -94,20 +95,24 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		buttonPane.add(rewindShow, 0, 6);
 		// to add list view control to status pane
 		statusPane.add(statusText, 0, 0);
-		statusPane.add(showList, 0, 1);
-		statusPane.add(timerValue, 0, 2);
-		showList.getItems().add(new Show("n1", 10));
-		showList.getItems().add(new Show("n2", 20));
-		showList.getItems().add(new Show("n3", 30));
-		showList.getItems().add(new Show("n4", 40));
-		showList.getItems().add(new Show("n5", 50));
-		showList.getSelectionModel().selectedItemProperty()
-				.addListener((ObservableValue<? extends Show> ov, Show old_val, Show new_val) -> {
-					Show selectedShow = showList.getSelectionModel().getSelectedItem();
-					PlayerContext.getInstance().onSelectShowRequest(selectedShow);
-				});
+		statusPane.add(timerValue, 0, 1);
+		statusPane.add(showList, 0, 2);
+		showTimeLeft(0);
+		// All of the below commented code is Nate's selection code
+		// showList.getItems().add(new Show("n1", 10));
+		// showList.getItems().add(new Show("n2", 20));
+		// showList.getItems().add(new Show("n3", 30));
+		// showList.getItems().add(new Show("n4", 40));
+		// showList.getItems().add(new Show("n5", 50));
+		// showList.getSelectionModel().selectedItemProperty()
+		// .addListener((ObservableValue<? extends Show> ov, Show old_val, Show new_val)
+		// -> {
+		// Show selectedShow = showList.getSelectionModel().getSelectedItem();
+		// PlayerContext.getInstance().onSelectShowRequest(selectedShow);
+		// });
 		statusPane.setStyle("-fx-background-color: white;");
-		statusText.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		statusText.maxHeight(Double.MAX_VALUE);
+		statusText.maxWidth(Double.MAX_VALUE);
 		mainPane.add(buttonPane, 0, 0);
 		mainPane.add(statusPane, 1, 0, 5, 1);
 		statusPane.setVgap(10);
@@ -115,7 +120,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		Scene scene = new Scene(mainPane);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Remote Control and Player Interface");
-		PlayerContext.getInstance().setDisplay(this);// UPDATED CLASS NAME TO RemoteContext not: PlayerContext
+		PlayerContext.getInstance().setDisplay(this);
 		primaryStage.show();
 		primaryStage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, new EventHandler<WindowEvent>() {
 			@Override
@@ -128,7 +133,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	@Override
 	public void showTimeLeft(int time) {
 		// timerValue.setText(" " + time);
-		statusText.setText(" " + time);
+		timerValue.setText(" " + time);
 	}
 
 	@Override
@@ -152,7 +157,9 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	@Override
 	public void showPlayingShow() {
 		// showStatus.setText("Playing");
-		statusText.setText("Status: Playing");
+		String tempText = statusText.getText().substring(8, statusText.getText().length());
+		String showSelected = "Status: " + tempText;
+		statusText.setText("Status: show selected playing");
 	}
 
 	@Override
