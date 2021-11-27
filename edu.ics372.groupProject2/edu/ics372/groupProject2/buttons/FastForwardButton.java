@@ -1,6 +1,7 @@
 package edu.ics372.groupProject2.buttons;
 
 import edu.ics372.groupProject2.states.PlayerContext;
+//import java.awt.event.ActionEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -15,6 +16,7 @@ public class FastForwardButton extends GUIButton implements EventHandler<ActionE
 	 * Create the button with the proper display
 	 * 
 	 * @param string the text to be put
+	 * 
 	 */
 	public FastForwardButton(String string) {
 		super(string);

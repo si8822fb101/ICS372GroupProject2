@@ -137,9 +137,17 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showPlayingShow() {
+	public void showPlayingShow(Show showDetails) {
 		// showStatus.setText("Playing");
-		statusText.setText("Status: Playing");
+		statusText.setText("Status: Playing " + showDetails.getName() + " " + showDetails.getTime() + " seconds left.");
+
+	}
+
+	@Override
+	public void showBeginningStateStatus() { // testing
+		// showStatus.setText("Playing");
+		statusText.setText("Status: In BeginningState ");
+
 	}
 
 	@Override
@@ -176,6 +184,11 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	public void showScreenSaverOff() {
 		// screenSaverStatus.setText("Screen saver off");
 		statusText.setText("Status: Screen saver off");
+	}
+
+	@Override
+	public void showSelectedShow(Show showDetails) {
+		statusText.setText("Status: Selected Show " + showDetails.getName());
 	}
 
 }

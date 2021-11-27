@@ -1,5 +1,7 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
+
 /**
  * 
  * @author Nathan Lantaigne-Goetsch
@@ -51,6 +53,13 @@ public abstract class PlayerState {
 	}
 
 	/**
+	 * Specifies the actions to be taken when entering the BeginningState
+	 */
+	public void onBeginningStateRequest() {
+
+	}
+
+	/**
 	 * Specifies the actions to be taken when the PLAY button is pressed
 	 */
 	public void onPlayShowRequest() {
@@ -90,6 +99,13 @@ public abstract class PlayerState {
 	 * Specifies actions to be taken when a show is selected
 	 */
 	public void onSelectShowRequest() {
+
+	}
+
+	/**
+	 * Specifies actions to be taken when a show is selected w/ show parameter
+	 */
+	public void onSelectShowRequest(Show show) {
 
 	}
 

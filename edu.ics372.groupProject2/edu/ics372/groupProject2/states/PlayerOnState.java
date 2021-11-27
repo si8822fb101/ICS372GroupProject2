@@ -31,6 +31,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 
 	private static PlayerOnState instance;
 	private Timer timer;
+//	private Show showSelected;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -63,18 +64,10 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	 * Handle select show event
 	 */
 	@Override
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public void onSelectShowRequest(Show show) {
-		showSelected = show;
-=======
 	public void onSelectShowRequest() {
->>>>>>> 53dba9b (revamped the design)
-		PlayerContext.getInstance().changeState(SelectState.getInstance());
-=======
-	public void onSelectShowRequest() {
-		PlayerContext.getInstance().changeState(BeginningState.getInstance());
->>>>>>> main
+		PlayerContext.getInstance().showSelectedShow();
+		PlayerContext.getInstance().changeState(BeginningState.getInstance()); // added transition into beginningState
+		// once show is selected.
 	}
 
 	@Override

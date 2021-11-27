@@ -92,6 +92,13 @@ public class PlayerContext {
 	}
 
 	/**
+	 * Process transition to BeginningState request
+	 */
+	public void onBeginningStateRequest() {
+		currentState.onBeginningStateRequest();
+	}
+
+	/**
 	 * Process turn player OFF request
 	 */
 	public void onOffRequest() {
@@ -177,13 +184,9 @@ public class PlayerContext {
 	 * from changes to the way the system utilizes the state changes.
 	 * 
 	 */
-<<<<<<< HEAD
 	public void showSelectedShow() {
 		display.showSelectedShow(this.getShowSelected());
-=======
-	public void showBeginningShow() {
-		display.showBeginningShow(this.getShowSelected());
->>>>>>> main
+
 	}
 
 	/**
@@ -192,7 +195,7 @@ public class PlayerContext {
 	 * 
 	 */
 	public void showPlayingShow() {
-		display.showPlayingShow();
+		display.showPlayingShow(this.showSelected);
 	}
 
 	/**
@@ -238,6 +241,10 @@ public class PlayerContext {
 	 */
 	public void showScreenSaverOn() {
 		display.showScreenSaverOn();
+	}
+
+	public void showStatusBeginningState() {
+		display.showBeginningStateStatus();
 	}
 
 	/**

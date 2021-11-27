@@ -5,20 +5,20 @@ import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * 
- * Represents the idle; show beginning state
+ * Represents the idle; show selected state
  * 
  * @author Qaalib Farah
  *
  */
-public class BeginningState extends PlayerState implements Notifiable {
+public class SelectState extends PlayerState implements Notifiable {
 
-	private static BeginningState instance;
+	private static SelectState instance;
 	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	private BeginningState() {
+	private SelectState() {
 		instance = this;
 	}
 
@@ -27,21 +27,16 @@ public class BeginningState extends PlayerState implements Notifiable {
 	 * 
 	 * @return the object
 	 */
-	public static BeginningState getInstance() {
+	public static SelectState getInstance() {
 		if (instance == null) {
-			instance = new BeginningState();
+			instance = new SelectState();
 		}
 
 		return instance;
 	}
 
-	/**
-	 * Handle Of request
-	 */
-	@Override
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
-
 	}
 
 	/*
@@ -50,15 +45,6 @@ public class BeginningState extends PlayerState implements Notifiable {
 	@Override
 	public void onPlayShowRequest() {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
-		PlayerContext.getInstance().showPlayingShow();
-	}
-
-	/**
-	 * Handle selecting a show
-	 */
-	@Override
-	public void onSelectShowRequest() {
-		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
 	/*
@@ -70,12 +56,8 @@ public class BeginningState extends PlayerState implements Notifiable {
 
 	@Override
 	public void enter() {
-//		isShowSelected = true;
-//		PlayerContext.getInstance().showSelectedShow(showSelected);
-		PlayerContext.getInstance().showSelectedShow();
-
 		timer = new Timer(this, 10000);
-//		PlayerContext.getInstance().showBeginningShow();
+		PlayerContext.getInstance().showSelectedShow();
 
 	}
 
