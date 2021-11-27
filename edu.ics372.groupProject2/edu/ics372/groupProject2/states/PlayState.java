@@ -93,7 +93,7 @@ public class PlayState extends PlayerState {
 	 */
 	@Override
 	public void onTimerRunsOut() {
-		PlayerContext.getInstance().showTimeLeft(0);
+		// PlayerContext.getInstance().showTimeLeft(0);
 		PlayerContext.getInstance().changeState(StopState.getInstance());
 	}
 
