@@ -1,5 +1,7 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
+
 /**
  * 
  * @author Nathan Lantainge-Goetsch
@@ -51,6 +53,14 @@ public class StopState extends PlayerState {
 	@Override
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
+	}
+
+	/*
+	 * Handle select show event
+	 */
+	@Override
+	public void onSelectShowRequest(Show show) {
+		PlayerContext.getInstance().changeState(SelectState.getInstance(show));
 	}
 
 	/*
