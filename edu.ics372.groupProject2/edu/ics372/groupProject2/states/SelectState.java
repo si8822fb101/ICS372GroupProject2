@@ -120,12 +120,16 @@ public class SelectState extends PlayerState {
 
 	@Override
 	public void enter() {
+		// Start a timer for 10 seconds
+		// if timer runs out, then leave state. Then enter screensaver state
 		PlayerContext.getInstance().showSelectedShow(selectedShow);
 	}
 
 	@Override
 	public void leave() {
-		PlayerContext.getInstance().showSelectedShow(selectedShow);
+		// PlayerContext.getInstance().showSelectedShow(selectedShow);//
+		PlayerContext.getInstance().showPlayingShow();
 	}
 
 }
+
