@@ -2,6 +2,7 @@ package edu.ics372.groupProject2.states;
 
 import edu.ics372.groupProject2.display.PlayerDisplay;
 import edu.ics372.groupProject2.select.Show;
+import edu.ics372.groupProject2.timer.Timer;
 
 /**
  *
@@ -34,6 +35,7 @@ public class PlayerContext {
 	private static PlayerContext instance;
 	protected static boolean isShowSelected;
 	protected static Show showSelected;
+	private static Timer timer;
 
 	/**
 	 * Make it a singleton
@@ -188,7 +190,6 @@ public class PlayerContext {
 	public void showSelectedShow() {
 		display.showSelectedShow(this.getShowSelected());
 
-
 	}
 
 	/**
@@ -264,5 +265,9 @@ public class PlayerContext {
 
 	public boolean isShowSelected() {
 		return this.isShowSelected;
+	}
+
+	public void setTimer(Timer timer) {
+		this.timer = timer;
 	}
 }
