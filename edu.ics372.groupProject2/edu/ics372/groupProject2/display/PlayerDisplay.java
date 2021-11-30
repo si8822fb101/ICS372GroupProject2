@@ -51,7 +51,7 @@ public interface PlayerDisplay {
 	/**
 	 * Indicate that the selected show is playing
 	 */
-	public void showPlayingShow();
+	public void showPlayingShow(Show show, int time);
 
 	/**
 	 * indicate that the selected show is paused
@@ -89,9 +89,7 @@ public interface PlayerDisplay {
 	public void showSelectedShow(Show showSelected);
 
 	/**
-	 * shows the selected show
+	 * Shows the beginning of a show
 	 */
-	public void showPlayingShow(Show showDetails);
-
 	public void showBeginningStateStatus(); // testing method signature
 }

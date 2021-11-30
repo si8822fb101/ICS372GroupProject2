@@ -103,7 +103,7 @@ public class PlayState extends PlayerState implements Notifiable {
 	@Override
 	public void onTimerTicked(int timeLeft) {
 		// TODO Auto-generated method stub
-
+		PlayerContext.getInstance().showPlayingShow();
 	}
 
 	@Override
@@ -111,12 +111,8 @@ public class PlayState extends PlayerState implements Notifiable {
 		// timer = new Timer(this, getTimeOfSelectedShowHere);
 		// need to implement showTime field for specific show play lengths.
 
-//		timer = new Timer(this, showTime);
-//(select control update)
-
 		timer = new Timer(this, PlayerContext.getInstance().getShowSelected().getTime());
-		PlayerContext.getInstance().showPlayingShow();
-		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
+		PlayerContext.getInstance().setTimer(timer);
 	}
 
 	@Override

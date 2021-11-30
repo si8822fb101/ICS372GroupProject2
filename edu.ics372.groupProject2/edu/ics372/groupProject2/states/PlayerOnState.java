@@ -71,8 +71,8 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	}
 
 	@Override
-	public void onTimerTick(int timerValue) {
-		PlayerContext.getInstance().showTimeLeft(timerValue);
+	public void onTimerRunsOut() {
+		// turn on screen saver
 	}
 
 	@Override
@@ -89,17 +89,17 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	public void enter() {
 		// Player turned on enters a state where there is 10 seconds to press a button
 		// on the controller. Otherwise the screen saver will be turned on
-		// timer = new Timer(this, 10);
+		timer = new Timer(this, 10);
+		PlayerContext.getInstance().setTimer(timer);
 		PlayerContext.getInstance().showPlayerOn();
-		// PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
-		// timer.stop();
-		// timer = null;
+		timer.stop();
+		timer = null;
+		PlayerContext.getInstance().setTimer(timer);
 		PlayerContext.getInstance().showPlayerOff();
-		// PlayerContext.getInstance().showTimeLeft(0);
 	}
 
 }
