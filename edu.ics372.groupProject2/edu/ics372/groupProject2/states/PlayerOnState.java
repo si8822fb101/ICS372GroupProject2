@@ -70,14 +70,19 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 		// once show is selected.
 	}
 
+	/*
+	 * Handle timer runs out event
+	 */
 	@Override
 	public void onTimerRunsOut() {
-		// turn on screen saver
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
+	/*
+	 * Handle timer tick events
+	 */
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -97,9 +102,11 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	@Override
 	public void leave() {
 		timer.stop();
+		if (timer.getTimeValue() > 0) {
+			PlayerContext.getInstance().showPlayerOff();
+		}
 		timer = null;
 		PlayerContext.getInstance().setTimer(timer);
-		PlayerContext.getInstance().showPlayerOff();
 	}
 
 }
