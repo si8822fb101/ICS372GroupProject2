@@ -70,14 +70,17 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 		// once show is selected.
 	}
 
+	/*
+	 * Handle timer runs out event
+	 */
 	@Override
 	public void onTimerTicked(int timeLeft) {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public void onTimerRunsOut() {
-		System.out.println("Screen Saver Active");
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+    System.out.println("Screen Saver Active");
 	}
 
 	/**

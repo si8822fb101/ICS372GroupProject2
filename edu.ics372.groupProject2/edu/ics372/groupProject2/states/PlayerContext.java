@@ -198,7 +198,7 @@ public class PlayerContext {
 	 *
 	 */
 	public void showPlayingShow() {
-		display.showPlayingShow(this.showSelected);
+		display.showPlayingShow(this.showSelected, this.timer.getTimeValue());
 	}
 
 	/**
@@ -270,4 +270,5 @@ public class PlayerContext {
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
+  
 }
