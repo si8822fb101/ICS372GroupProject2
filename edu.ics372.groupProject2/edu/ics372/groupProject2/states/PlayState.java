@@ -71,8 +71,7 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onStopShowRequest() {
-
-		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());
 	}
 
 	/*
