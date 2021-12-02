@@ -113,8 +113,14 @@ public class PlayState extends PlayerState implements Notifiable {
 	public void enter() {
 		// timer = new Timer(this, getTimeOfSelectedShowHere);
 		// need to implement showTime field for specific show play lengths.
-
-		timer = new Timer(this, PlayerContext.getInstance().getShowSelected().getTime());
+		int time = -1;
+		PlayerContext ctx = PlayerContext.getInstance();
+		if (ctx.timer != null) {
+			time = ctx.timer.getTimeValue();
+		} else {
+			time = ctx.getShowSelected().getTime();
+		}
+		timer = new Timer(this, time);
 		PlayerContext.getInstance().setTimer(timer);
 
 	}

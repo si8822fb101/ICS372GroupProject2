@@ -82,8 +82,10 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 	@Override
 	public void enter() {
 
-		timer = new Timer(this, PlayerContext.getInstance().getShowSelected().getTime());
-		timer.stop();
+		// timer = new Timer(this,
+		// PlayerContext.getInstance().getShowSelected().getTime());
+		// timer.stop();
+		PlayerContext.getInstance().timer.stop();
 //		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 		PlayerContext.getInstance().showTimeLeft(PlayerContext.getInstance().timer.getTimeValue());
 		PlayerContext.getInstance().showPausedShow();
@@ -91,8 +93,7 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 
 	@Override
 	public void leave() {
-		System.out.println("leave pause state");
-		PlayerContext.getInstance().showStoppedShow();
+
 	}
 
 }
