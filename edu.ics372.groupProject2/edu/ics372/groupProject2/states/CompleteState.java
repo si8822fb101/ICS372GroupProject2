@@ -1,10 +1,11 @@
 package edu.ics372.groupProject2.states;
+
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * Represent the Completed state
- * 
+ *
  * @author lengvang
  *
  */
@@ -22,7 +23,7 @@ public class CompleteState extends PlayerState implements Notifiable {
 
 	/**
 	 * For the singleton pattern
-	 * 
+	 *
 	 * @return the object
 	 */
 	public static CompleteState getInstance() {
@@ -39,7 +40,7 @@ public class CompleteState extends PlayerState implements Notifiable {
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
- 
+
 	/**
 	 * Handle Player play event
 	 */
@@ -51,27 +52,50 @@ public class CompleteState extends PlayerState implements Notifiable {
 	/**
 	 * Handle Player stop event
 	 */
-	@Override
-	public void onStopShowRequest() {
-		PlayerContext.getInstance().changeState(SelectState.getInstance());
+	public void onStopRequest() {
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 	
+	/*
+	 * Handle select show event
+	 */
+	@Override
+	public void onSelectShowRequest() {
+		PlayerContext.getInstance().changeState(BeginningState.getInstance()); 
+	}
+	
+	/*
+	 * Handle timer runs out event
+	 */
+	@Override
+	public void onTimerRunsOut() {
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+	}
+
+	@Override
+	public void onTimerTicked(int timeLeft) {
+		// TODO Auto-generated method stub
+
+	}
 
 	/**
 	 * initialize the state
-	 * 
+	 *
 	 */
 
 	@Override
 	public void enter() {
 		timer = new Timer(this, 10000);
 		PlayerContext.getInstance().showScreenSaverOn();
+		PlayerContext.getInstance().setTimer(timer);
 
 	}
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
+		timer.stop();
+		timer = null;
+		PlayerContext.getInstance().setTimer(timer);
 
 	}
 
