@@ -109,6 +109,10 @@ public class PlayState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().showPlayingShow();
 	}
 
+	// TODO -timer (static timer is using previous show timer when new show is
+	// selected.)
+	// Set new timer to show max time when show is selected.
+
 	@Override
 	public void enter() {
 		// timer = new Timer(this, getTimeOfSelectedShowHere);

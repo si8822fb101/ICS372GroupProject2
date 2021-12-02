@@ -12,6 +12,7 @@ import edu.ics372.groupProject2.timer.Timer;
 
 public class CompleteState extends PlayerState implements Notifiable {
 	private static CompleteState instance;
+	Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
