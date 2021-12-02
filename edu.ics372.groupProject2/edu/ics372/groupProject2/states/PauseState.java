@@ -19,7 +19,6 @@ package edu.ics372.groupProject2.states;
  */
 
 import edu.ics372.groupProject2.timer.Notifiable;
-import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * Represents the pause show state
@@ -27,7 +26,6 @@ import edu.ics372.groupProject2.timer.Timer;
  */
 public class PauseState extends PlayerState implements Notifiable { // Notifiable implementation?
 	private static PauseState instance;
-	private Timer timer; // need to get paused time from when player is playing.
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -76,9 +74,6 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 
-	// create external variable for timer? to hangle transitions between paused and
-	// play
-	// for accurate time managment.
 	@Override
 	public void enter() {
 

@@ -118,7 +118,7 @@ public class PlayerContext {
 	 * Process stop show STOP request
 	 */
 	public void onStopShowRequest() {
-		this.showSelected = new Show("", 0); // select a dummy show instead of null?
+		this.showSelected = new Show("", 0); // dummy show variable (resolving NPE)
 		this.isShowSelected = false;
 		currentState.onStopShowRequest();
 	}

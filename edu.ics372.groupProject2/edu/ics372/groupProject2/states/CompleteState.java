@@ -12,7 +12,6 @@ import edu.ics372.groupProject2.timer.Timer;
 
 public class CompleteState extends PlayerState implements Notifiable {
 	private static CompleteState instance;
-	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -58,7 +57,6 @@ public class CompleteState extends PlayerState implements Notifiable {
 
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -66,7 +64,6 @@ public class CompleteState extends PlayerState implements Notifiable {
 	 * initialize the state
 	 *
 	 */
-
 	@Override
 	public void enter() {
 		timer = new Timer(this, 10000);
@@ -76,8 +73,6 @@ public class CompleteState extends PlayerState implements Notifiable {
 
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
-
 	}
 
 }
