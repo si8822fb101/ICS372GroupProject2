@@ -63,7 +63,9 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onPauseShowRequest() {
+		timer.stop();
 		PlayerContext.getInstance().changeState(PauseState.getInstance());
+
 	}
 
 	/*
@@ -71,8 +73,9 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onStopShowRequest() {
-
+		timer.stop();
 		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
+		PlayerContext.getInstance().showStatusBeginningState();
 	}
 
 	/*
@@ -102,7 +105,7 @@ public class PlayState extends PlayerState implements Notifiable {
 
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		// TODO Auto-generated method stub
+
 		PlayerContext.getInstance().showPlayingShow();
 	}
 
@@ -113,6 +116,7 @@ public class PlayState extends PlayerState implements Notifiable {
 
 		timer = new Timer(this, PlayerContext.getInstance().getShowSelected().getTime());
 		PlayerContext.getInstance().setTimer(timer);
+
 	}
 
 	@Override

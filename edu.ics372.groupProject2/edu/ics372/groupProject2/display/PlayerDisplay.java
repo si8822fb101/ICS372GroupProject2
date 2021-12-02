@@ -56,6 +56,11 @@ public interface PlayerDisplay {
 	/**
 	 * indicate that the selected show is paused
 	 */
+	public void showPausedShow(Show show, int time);
+
+	/**
+	 * indicate that the selected show is paused
+	 */
 	public void showPausedShow();
 
 	/**

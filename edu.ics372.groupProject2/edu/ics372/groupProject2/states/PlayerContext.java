@@ -35,7 +35,7 @@ public class PlayerContext {
 	private static PlayerContext instance;
 	protected static boolean isShowSelected;
 	protected static Show showSelected;
-	private static Timer timer;
+	protected static Timer timer; // changed to protected
 
 	/**
 	 * Make it a singleton
@@ -118,7 +118,7 @@ public class PlayerContext {
 	 * Process stop show STOP request
 	 */
 	public void onStopShowRequest() {
-		this.showSelected = null;
+		this.showSelected = new Show("", 0); // select a dummy show instead of null?
 		this.isShowSelected = false;
 		currentState.onStopShowRequest();
 	}
@@ -168,6 +168,7 @@ public class PlayerContext {
 	 * from changes to the way the system utilizes the state changes.
 	 *
 	 */
+
 	public void showPlayerOn() {
 		display.showPlayerOn();
 	}
@@ -207,7 +208,7 @@ public class PlayerContext {
 	 *
 	 */
 	public void showPausedShow() {
-		display.showPausedShow();
+		display.showPausedShow(this.showSelected, this.timer.getTimeValue()); // NOT WORKING
 	}
 
 	/**

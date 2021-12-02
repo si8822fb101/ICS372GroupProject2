@@ -147,15 +147,15 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showPausedShow() {
+	public void showPausedShow(Show show, int time) {
 		// showStatus.setText("Paused");
-		statusText.setText("Status: Paused");
+		statusText.setText("Status: Paused " + formatShowTime(time, show.getTime()) + " seconds left.");
 	}
 
 	@Override
 	public void showStoppedShow() {
-		// showStatus.setText("Stoped");
-		statusText.setText("Status: Stoped");
+		// showStatus.setText("Stopped");
+		statusText.setText("Status: Stopped");
 	}
 
 	@Override
@@ -206,5 +206,11 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		}
 
 		return timeLeftMinutes + ":" + timeLeftSeconds + "/" + totalTimeMinutes + ":" + totalTimeSeconds;
+	}
+
+	@Override
+	public void showPausedShow() {
+		// TODO Auto-generated method stub
+		System.out.println("HEY??");
 	}
 }

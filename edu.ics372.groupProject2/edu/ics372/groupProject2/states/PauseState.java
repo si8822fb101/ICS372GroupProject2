@@ -27,7 +27,7 @@ import edu.ics372.groupProject2.timer.Timer;
  */
 public class PauseState extends PlayerState implements Notifiable { // Notifiable implementation?
 	private static PauseState instance;
-	private Timer timer;
+	private Timer timer; // need to get paused time from when player is playing.
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -53,16 +53,18 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 	@Override
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
+		PlayerContext.getInstance().showPlayerOff();
 	}
 
 	@Override
 	public void onStopShowRequest() {
 		PlayerContext.getInstance().changeState(CompleteState.getInstance());
+		PlayerContext.getInstance().showStoppedShow();
 	}
 
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		// TODO Auto-generated method stub
+		PlayerContext.getInstance().showPausedShow();
 
 	}
 
@@ -74,14 +76,22 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 
+	// create external variable for timer? to hangle transitions between paused and
+	// play
+	// for accurate time managment.
 	@Override
 	public void enter() {
+
+		timer = new Timer(this, PlayerContext.getInstance().getShowSelected().getTime());
+		timer.stop();
+//		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
+		PlayerContext.getInstance().showTimeLeft(PlayerContext.getInstance().timer.getTimeValue());
 		PlayerContext.getInstance().showPausedShow();
-		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
+		System.out.println("leave pause state");
 		PlayerContext.getInstance().showStoppedShow();
 	}
 
