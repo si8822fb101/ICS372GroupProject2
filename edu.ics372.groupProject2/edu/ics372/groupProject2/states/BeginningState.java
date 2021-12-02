@@ -61,11 +61,9 @@ public class BeginningState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
-	/*
-	 * Process clock ticks Generates the timer runs out event
-	 */
+	@Override
 	public void onTimerRunsOut() {
-//		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
 	@Override
@@ -76,17 +74,16 @@ public class BeginningState extends PlayerState implements Notifiable {
 
 	@Override
 	public void enter() {
-//		isShowSelected = true;
-//		PlayerContext.getInstance().showSelectedShow(showSelected);
 		PlayerContext.getInstance().showSelectedShow();
-		timer = new Timer(this, 10000);
-//		PlayerContext.getInstance().showBeginningShow();
+		timer = new Timer(this, 10);
+		PlayerContext.getInstance().setTimer(timer);
 	}
 
 	@Override
 	public void leave() {
 		timer.stop();
 		timer = null;
+		PlayerContext.getInstance().setTimer(timer);
 	}
 
 }

@@ -271,5 +271,5 @@ public class PlayerContext {
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
-
+  
 }
