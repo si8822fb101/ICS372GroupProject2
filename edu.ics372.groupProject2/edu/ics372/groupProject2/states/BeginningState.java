@@ -63,7 +63,7 @@ public class BeginningState extends PlayerState implements Notifiable {
 
 	@Override
 	public void onTimerRunsOut() {
-		System.out.println("Screen Saver Active");
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
 	@Override

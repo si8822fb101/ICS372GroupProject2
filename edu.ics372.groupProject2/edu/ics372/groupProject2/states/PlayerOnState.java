@@ -80,7 +80,6 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
-    System.out.println("Screen Saver Active");
 	}
 
 	/**
