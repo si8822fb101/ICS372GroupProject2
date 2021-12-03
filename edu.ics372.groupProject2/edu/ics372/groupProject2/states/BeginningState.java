@@ -4,32 +4,32 @@ import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
- * 
- * Represents the idle; show selected state
- * 
+ *
+ * Represents the idle; show beginning state
+ *
  * @author Qaalib Farah
  *
  */
-public class SelectState extends PlayerState implements Notifiable {
+public class BeginningState extends PlayerState implements Notifiable {
 
-	private static SelectState instance;
+	private static BeginningState instance;
 	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
 	 */
-	private SelectState() {
+	private BeginningState() {
 		instance = this;
 	}
 
 	/**
 	 * For the singleton pattern
-	 * 
+	 *
 	 * @return the object
 	 */
-	public static SelectState getInstance() {
+	public static BeginningState getInstance() {
 		if (instance == null) {
-			instance = new SelectState();
+			instance = new BeginningState();
 		}
 
 		return instance;
@@ -41,6 +41,7 @@ public class SelectState extends PlayerState implements Notifiable {
 	@Override
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
+
 	}
 
 	/*
@@ -49,6 +50,7 @@ public class SelectState extends PlayerState implements Notifiable {
 	@Override
 	public void onPlayShowRequest() {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
+		PlayerContext.getInstance().showPlayingShow();
 	}
 
 	/**
@@ -56,26 +58,32 @@ public class SelectState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onSelectShowRequest() {
-		PlayerContext.getInstance().changeState(SelectState.getInstance());
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
-	/*
-	 * Process clock ticks Generates the timer runs out event
-	 */
+	@Override
 	public void onTimerRunsOut() {
-//		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+	}
+
+	@Override
+	public void onTimerTicked(int timeLeft) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void enter() {
-		timer = new Timer(this, 10000);
 		PlayerContext.getInstance().showSelectedShow();
+		timer = new Timer(this, 10);
+		PlayerContext.getInstance().setTimer(timer);
 	}
 
 	@Override
 	public void leave() {
 		timer.stop();
 		timer = null;
+		PlayerContext.getInstance().setTimer(timer);
 	}
 
 }

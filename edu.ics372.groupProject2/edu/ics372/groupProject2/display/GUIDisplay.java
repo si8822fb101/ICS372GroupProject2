@@ -14,7 +14,6 @@ import edu.ics372.groupProject2.states.PlayerContext;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -52,7 +51,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	private GUIButton rewindShow;
 	private GUIButton fastForwardShow;
 	private GUIButton stopShow;
-	private Label statusText;
+	private Text statusText;
 	private SelectControl showList;
 	// Hold on to these text vars
 	private Text timerValue = new Text("            ");
@@ -69,9 +68,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		pauseShow = new PauseButton("Pause");
 		fastForwardShow = new FastForwardButton("FF");
 		rewindShow = new RewindButton("Rew");
-		statusText = new Label("Status: Player OFF");
-		statusText.setMinWidth(50);
-		statusText.setMinHeight(50);
+		statusText = new Text("Status: Player OFF");
 		showList = new SelectControl();
 		GridPane mainPane = new GridPane();
 		mainPane.setHgap(10);
@@ -89,7 +86,6 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		statusPane.add(statusText, 0, 0);
 		statusPane.add(showList, 0, 1);
 		statusPane.setStyle("-fx-background-color: white;");
-		statusText.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		mainPane.add(buttonPane, 0, 0);
 		mainPane.add(statusPane, 1, 0, 5, 1);
 		statusPane.setVgap(10);
@@ -131,27 +127,35 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showSelectedShow(Show showDetails) {
+	public void showBeginningShow(Show showDetails) {
 		// showSelectedStatus.setText("Show selected yes");
-		statusText.setText("Status: Show selected [" + showDetails.toString() + "]");
+		statusText.setText("" + showDetails.getName() + " " + showDetails.getTime() + " seconds left.");
 	}
 
 	@Override
-	public void showPlayingShow() {
+	public void showPlayingShow(Show show, int time) {
 		// showStatus.setText("Playing");
-		statusText.setText("Status: Playing");
+		statusText.setText("Playing " + show.getName() + " " + formatShowTime(time, show.getTime()));
+
 	}
 
 	@Override
-	public void showPausedShow() {
+	public void showBeginningStateStatus() { // testing
+		// showStatus.setText("Playing");
+		statusText.setText("Status: In BeginningState ");
+
+	}
+
+	@Override
+	public void showPausedShow(Show show, int time) {
 		// showStatus.setText("Paused");
-		statusText.setText("Status: Paused");
+		statusText.setText("Status: Paused " + formatShowTime(time, show.getTime()) + " seconds left.");
 	}
 
 	@Override
 	public void showStoppedShow() {
-		// showStatus.setText("Stoped");
-		statusText.setText("Status: Stoped");
+		// showStatus.setText("Stopped");
+		statusText.setText("Status: Stopped");
 	}
 
 	@Override
@@ -178,4 +182,35 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		statusText.setText("Status: Screen saver off");
 	}
 
+	@Override
+	public void showSelectedShow(Show showDetails) {
+		statusText.setText("Status: Selected Show " + showDetails.getName());
+	}
+
+	private String formatShowTime(int timeLeft, int totalTime) {
+		String timeLeftMinutes = Integer.toString(timeLeft / 60);
+		String timeLeftSeconds = Integer.toString(timeLeft % 60);
+		String totalTimeMinutes = Integer.toString(totalTime / 60);
+		String totalTimeSeconds = Integer.toString(totalTime % 60);
+		if (timeLeftMinutes.length() < 2) {
+			timeLeftMinutes = "0" + timeLeftMinutes;
+		}
+		if (timeLeftSeconds.length() < 2) {
+			timeLeftSeconds = "0" + timeLeftSeconds;
+		}
+		if (totalTimeMinutes.length() < 2) {
+			totalTimeMinutes = "0" + totalTimeMinutes;
+		}
+		if (totalTimeSeconds.length() < 2) {
+			totalTimeSeconds = "0" + totalTimeSeconds;
+		}
+
+		return timeLeftMinutes + ":" + timeLeftSeconds + "/" + totalTimeMinutes + ":" + totalTimeSeconds;
+	}
+
+	@Override
+	public void showPausedShow() {
+		// TODO Auto-generated method stub
+		System.out.println("HEY??");
+	}
 }

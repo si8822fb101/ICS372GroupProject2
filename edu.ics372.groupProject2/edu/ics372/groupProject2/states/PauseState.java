@@ -18,15 +18,14 @@ package edu.ics372.groupProject2.states;
  * and are not responsible for any loss or damage resulting from its use.  
  */
 
-import edu.ics372.groupProject2.timer.Timer;
+import edu.ics372.groupProject2.timer.Notifiable;
 
 /**
  * Represents the pause show state
  *
  */
-public class PauseState extends PlayerState {
+public class PauseState extends PlayerState implements Notifiable { // Notifiable implementation?
 	private static PauseState instance;
-	private Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -52,6 +51,19 @@ public class PauseState extends PlayerState {
 	@Override
 	public void onOffRequest() {
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
+		PlayerContext.getInstance().showPlayerOff();
+	}
+
+	@Override
+	public void onStopShowRequest() {
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());
+		PlayerContext.getInstance().showStoppedShow();
+	}
+
+	@Override
+	public void onTimerTicked(int timeLeft) {
+		PlayerContext.getInstance().showPausedShow();
+
 	}
 
 	/*
@@ -64,13 +76,19 @@ public class PauseState extends PlayerState {
 
 	@Override
 	public void enter() {
+
+		// timer = new Timer(this,
+		// PlayerContext.getInstance().getShowSelected().getTime());
+		// timer.stop();
+		PlayerContext.getInstance().timer.stop();
+//		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
+		PlayerContext.getInstance().showTimeLeft(PlayerContext.getInstance().timer.getTimeValue());
 		PlayerContext.getInstance().showPausedShow();
-		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 	}
 
 	@Override
 	public void leave() {
-		PlayerContext.getInstance().showStoppedShow();
+
 	}
 
 }

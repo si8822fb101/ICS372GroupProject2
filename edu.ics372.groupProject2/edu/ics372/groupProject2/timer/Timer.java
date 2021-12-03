@@ -50,6 +50,8 @@ public class Timer implements PropertyChangeListener {
 		if (--timeValue <= 0) {
 			client.onTimerRunsOut();
 			Clock.getInstance().removePropertyChangeListener(this);
+		} else {
+			client.onTimerTicked(timeValue);
 		}
 	}
 }

@@ -46,12 +46,17 @@ public interface PlayerDisplay {
 	/**
 	 * Indicate that a show was selected
 	 */
-	public void showSelectedShow(Show showDetails);
+	public void showBeginningShow(Show showDetails);
 
 	/**
 	 * Indicate that the selected show is playing
 	 */
-	public void showPlayingShow();
+	public void showPlayingShow(Show show, int time);
+
+	/**
+	 * indicate that the selected show is paused
+	 */
+	public void showPausedShow(Show show, int time);
 
 	/**
 	 * indicate that the selected show is paused
@@ -82,4 +87,14 @@ public interface PlayerDisplay {
 	 * indicate that the screen saver is OFF
 	 */
 	public void showScreenSaverOff();
+
+	/**
+	 * shows the selected show
+	 */
+	public void showSelectedShow(Show showSelected);
+
+	/**
+	 * Shows the beginning of a show
+	 */
+	public void showBeginningStateStatus(); // testing method signature
 }

@@ -4,10 +4,10 @@ import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
- * 
+ *
  * @author Nathan Lantainge-Goetsch
  * @Copyright (c) 2021
- 
+
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -20,7 +20,7 @@ import edu.ics372.groupProject2.timer.Timer;
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
+ * and are not responsible for any loss or damage resulting from its use.
  */
 
 /**
@@ -35,11 +35,12 @@ public class PlayState extends PlayerState implements Notifiable {
 	 * Private constructor for the singleton pattern
 	 */
 	private PlayState() {
+		instance = this;
 	}
 
 	/**
 	 * For the singleton pattern
-	 * 
+	 *
 	 * @return the object
 	 */
 	public static PlayState getInstance() {
@@ -62,7 +63,9 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onPauseShowRequest() {
+		timer.stop();
 		PlayerContext.getInstance().changeState(PauseState.getInstance());
+
 	}
 
 	/*
@@ -70,7 +73,9 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onStopShowRequest() {
+		timer.stop();
 		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
+		PlayerContext.getInstance().showStatusBeginningState();
 	}
 
 	/*
@@ -99,25 +104,35 @@ public class PlayState extends PlayerState implements Notifiable {
 	}
 
 	@Override
+	public void onTimerTicked(int timeLeft) {
+
+		PlayerContext.getInstance().showPlayingShow();
+	}
+
+	// TODO -timer (static timer is using previous show timer when new show is
+	// selected.)
+	// Set new timer to show max time when show is selected.
+
+	@Override
 	public void enter() {
 		// timer = new Timer(this, getTimeOfSelectedShowHere);
 		// need to implement showTime field for specific show play lengths.
-		timer = new Timer(this, PlayerContext.getInstance().getShowSelected().getTime());
-		PlayerContext.getInstance().showPlayingShow();
-		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
+		int time = -1;
+		PlayerContext ctx = PlayerContext.getInstance();
+		if (ctx.timer != null) {
+			time = ctx.timer.getTimeValue();
+		} else {
+			time = ctx.getShowSelected().getTime();
+		}
+		timer = new Timer(this, time);
+		PlayerContext.getInstance().setTimer(timer);
+
 	}
 
 	@Override
 	public void leave() {
 		PlayerContext.getInstance().showStoppedShow();
-		// timer = null;
 		timer = null;
-
-		// timer could possibly be set to 10, so it can begin countdown for
-		// screen saver initializing
-		timer.addTimeValue(10);
-
-		// Possibly change showTimeLeft below to 0 or nothing at all
 		PlayerContext.getInstance().showTimeLeft(0);
 
 	}

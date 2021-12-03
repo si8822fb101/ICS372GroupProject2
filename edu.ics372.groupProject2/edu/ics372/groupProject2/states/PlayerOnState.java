@@ -4,10 +4,10 @@ import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
- * 
+ *
  * @author Nathan Lantaigne-Goetsch
  * @Copyright (c) 2021
- 
+
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -20,7 +20,7 @@ import edu.ics372.groupProject2.timer.Timer;
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
+ * and are not responsible for any loss or damage resulting from its use.
  */
 
 /**
@@ -31,6 +31,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 
 	private static PlayerOnState instance;
 	private Timer timer;
+//	private Show showSelected;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -41,7 +42,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 
 	/**
 	 * For the singleton pattern
-	 * 
+	 *
 	 * @return the object
 	 */
 	public static PlayerOnState getInstance() {
@@ -64,32 +65,42 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onSelectShowRequest() {
-		PlayerContext.getInstance().changeState(SelectState.getInstance());
+		PlayerContext.getInstance().showSelectedShow();
+		PlayerContext.getInstance().changeState(BeginningState.getInstance()); // added transition into beginningState
+		// once show is selected.
 	}
 
+	/*
+	 * Handle timer runs out event
+	 */
 	@Override
-	public void onTimerTick(int timerValue) {
-		PlayerContext.getInstance().showTimeLeft(timerValue);
+	public void onTimerTicked(int timeLeft) {
+		// TODO Auto-generated method stub
+	}
+
+	public void onTimerRunsOut() {
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
 	/**
 	 * initialize the state
-	 * 
+	 *
 	 */
 	@Override
 	public void enter() {
 		// Player turned on enters a state where there is 10 seconds to press a button
 		// on the controller. Otherwise the screen saver will be turned on
-		// timer = new Timer(this, 10);
 		PlayerContext.getInstance().showPlayerOn();
-		// PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
+		timer = new Timer(this, 10);
+		PlayerContext.getInstance().setTimer(timer);
 	}
 
 	@Override
 	public void leave() {
-		// timer.stop();
-		// timer = null;
+		timer.stop();
+		timer = null;
 		PlayerContext.getInstance().showPlayerOff();
-		// PlayerContext.getInstance().showTimeLeft(0);
+		PlayerContext.getInstance().setTimer(timer);
 	}
+
 }

@@ -12,7 +12,7 @@ import edu.ics372.groupProject2.timer.Timer;
 
 public class CompleteState extends PlayerState implements Notifiable {
 	private static CompleteState instance;
-	private Timer timer;
+	Timer timer;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -82,13 +82,11 @@ public class CompleteState extends PlayerState implements Notifiable {
 	 * initialize the state
 	 *
 	 */
-
 	@Override
 	public void enter() {
 		timer = new Timer(this, 10000);
 		PlayerContext.getInstance().showScreenSaverOn();
 		PlayerContext.getInstance().setTimer(timer);
-
 	}
 
 	@Override
@@ -96,7 +94,6 @@ public class CompleteState extends PlayerState implements Notifiable {
 		timer.stop();
 		timer = null;
 		PlayerContext.getInstance().setTimer(timer);
-
 	}
 
 }

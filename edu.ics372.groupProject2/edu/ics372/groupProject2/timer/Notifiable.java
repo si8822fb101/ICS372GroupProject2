@@ -7,4 +7,6 @@ public interface Notifiable {
 	 */
 	public void onTimerRunsOut();
 
+	public void onTimerTicked(int timeLeft);
+
 }
