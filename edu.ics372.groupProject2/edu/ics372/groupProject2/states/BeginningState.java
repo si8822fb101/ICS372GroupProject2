@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
@@ -57,7 +58,10 @@ public class BeginningState extends PlayerState implements Notifiable {
 	 * Handle selecting a show
 	 */
 	@Override
-	public void onSelectShowRequest() {
+	public void onSelectShowRequest(Show showDetails) {
+		PlayerContext.getInstance().setShowSelected(showDetails);
+		PlayerContext.getInstance().setIsShowSelected(true);
+		PlayerContext.getInstance().showSelectedShow();
 		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
