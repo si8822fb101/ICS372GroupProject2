@@ -56,6 +56,8 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 
 	@Override
 	public void onStopShowRequest() {
+		PlayerContext.getInstance().setShowSelected(null);
+		PlayerContext.getInstance().setIsShowSelected(false);
 		PlayerContext.getInstance().changeState(CompleteState.getInstance());
 		PlayerContext.getInstance().showStoppedShow();
 	}
