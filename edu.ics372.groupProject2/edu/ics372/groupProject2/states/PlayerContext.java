@@ -271,24 +271,44 @@ public class PlayerContext {
 	/**
 	 * Method to return the show selected
 	 * 
-	 * @return
+	 * @return show selected by the user
 	 */
 	public Show getShowSelected() {
 		return this.showSelected;
 	}
 
+	/**
+	 * Method to set the show selected variable
+	 * 
+	 * @param show selected by the user
+	 */
 	public void setShowSelected(Show show) {
 		this.showSelected = show;
 	}
 
+	/**
+	 * Method to check whether show is selected or not.
+	 * 
+	 * @return true or false if a show is selected
+	 */
 	public boolean isShowSelected() {
 		return this.isShowSelected;
 	}
 
+	/**
+	 * Method to set the is show selected variable
+	 * 
+	 * @param isShowSelected true or false to set
+	 */
 	public void setIsShowSelected(Boolean isShowSelected) {
 		this.isShowSelected = isShowSelected;
 	}
 
+	/**
+	 * Method to set the main timer
+	 * 
+	 * @param timer object to be set
+	 */
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
