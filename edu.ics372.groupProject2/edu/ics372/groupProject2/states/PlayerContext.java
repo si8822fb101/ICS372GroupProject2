@@ -36,6 +36,7 @@ public class PlayerContext {
 	protected static boolean isShowSelected;
 	protected static Show showSelected;
 	protected static Timer timer; // changed to protected
+	protected static PlayerState prevState;
 
 	/**
 	 * Make it a singleton
@@ -81,8 +82,19 @@ public class PlayerContext {
 	 * @param nextState the next state
 	 */
 	public void changeState(PlayerState nextState) {
+		this.prevState = currentState;
 		currentState.leave();
 		currentState = nextState;
+		currentState.enter();
+	}
+
+	/**
+	 * Method to revert to the previous state
+	 * 
+	 */
+	public void revertToPreviousState() {
+		currentState.leave();
+		currentState = prevState;
 		currentState.enter();
 	}
 
@@ -118,8 +130,6 @@ public class PlayerContext {
 	 * Process stop show STOP request
 	 */
 	public void onStopShowRequest() {
-		this.showSelected = new Show("", 0); // dummy show variable (resolving NPE)
-		this.isShowSelected = false;
 		currentState.onStopShowRequest();
 	}
 
@@ -148,9 +158,7 @@ public class PlayerContext {
 	 * Process select show request
 	 */
 	public void onSelectShowRequest(Show showDetails) {
-		this.showSelected = showDetails;
-		this.isShowSelected = true;
-		currentState.onSelectShowRequest();
+		currentState.onSelectShowRequest(showDetails);
 	}
 
 	/**
@@ -260,16 +268,28 @@ public class PlayerContext {
 		display.showScreenSaverOff();
 	}
 
+	/**
+	 * Method to return the show selected
+	 * 
+	 * @return
+	 */
 	public Show getShowSelected() {
 		return this.showSelected;
+	}
+
+	public void setShowSelected(Show show) {
+		this.showSelected = show;
 	}
 
 	public boolean isShowSelected() {
 		return this.isShowSelected;
 	}
 
+	public void setIsShowSelected(Boolean isShowSelected) {
+		this.isShowSelected = isShowSelected;
+	}
+
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
-  
 }
