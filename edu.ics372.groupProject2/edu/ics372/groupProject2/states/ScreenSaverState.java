@@ -122,7 +122,6 @@ public class ScreenSaverState extends PlayerState {
 
 	@Override
 	public void leave() {
-		PlayerContext.getInstance().showPlayerOn();
 	}
 
 }
