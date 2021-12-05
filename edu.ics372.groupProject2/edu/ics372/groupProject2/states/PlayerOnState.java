@@ -75,7 +75,6 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		// TODO Auto-generated method stub
 	}
 
 	public void onTimerRunsOut() {

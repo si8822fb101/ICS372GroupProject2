@@ -247,8 +247,8 @@ public class PlayerContext {
 		display.showScreenSaverOn();
 	}
 
-	public void showStatusBeginningState() {
-		display.showBeginningStateStatus();
+	public void showCompleteState() {
+		display.showCompleteState();
 	}
 
 	/**

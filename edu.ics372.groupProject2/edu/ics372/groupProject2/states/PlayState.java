@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
@@ -30,6 +31,7 @@ import edu.ics372.groupProject2.timer.Timer;
 public class PlayState extends PlayerState implements Notifiable {
 	private static PlayState instance;
 	private Timer timer;
+	private Show currentShow = PlayerContext.showSelected;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -55,6 +57,9 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onOffRequest() {
+		PlayerContext.getInstance().timer.stop();
+		PlayerContext.getInstance().showPlayerOff();
+		PlayerContext.getInstance().onOffRequest();
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
 
@@ -63,9 +68,16 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onPauseShowRequest() {
-		timer.stop();
+		PlayerContext.getInstance().timer.stop();
 		PlayerContext.getInstance().changeState(PauseState.getInstance());
 
+	}
+
+	@Override
+	public void onSelectShowRequest() {
+//		PlayerContext.getInstance().showPausedShow();
+		PlayerContext.getInstance().onSelectShowRequest(currentShow);
+//		PlayerContext.getInstance().changeState(PauseState.getInstance());
 	}
 
 	/*
@@ -73,9 +85,12 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onStopShowRequest() {
-		timer.stop();
+		PlayerContext.getInstance().timer.stop();
+//		timer.stop();
+		PlayerContext.getInstance().showStoppedShow();
+		PlayerContext.getInstance().showCompleteState();
 		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
-		PlayerContext.getInstance().showStatusBeginningState();
+
 	}
 
 	/*
@@ -100,7 +115,10 @@ public class PlayState extends PlayerState implements Notifiable {
 	@Override
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().showTimeLeft(0);
-		this.onStopShowRequest();
+		PlayerContext.getInstance().showCompleteState();
+//		PlayerContext.getInstance().changeState(CompleteState.getInstance()); Disabled due to Pause Transition Bug
+//		this.onStopShowRequest();
+//		PlayerContext.getInstance().changeState(CompleteState.getInstance());
 	}
 
 	@Override
@@ -109,14 +127,9 @@ public class PlayState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().showPlayingShow();
 	}
 
-	// TODO -timer (static timer is using previous show timer when new show is
-	// selected.)
-	// Set new timer to show max time when show is selected.
-
 	@Override
 	public void enter() {
 		// timer = new Timer(this, getTimeOfSelectedShowHere);
-		// need to implement showTime field for specific show play lengths.
 		int time = -1;
 		PlayerContext ctx = PlayerContext.getInstance();
 		if (ctx.timer != null) {

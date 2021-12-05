@@ -56,6 +56,10 @@ public class CompleteState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
+	public void onTimerRunsOut() {
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+	}
+
 	@Override
 	public void onTimerTicked(int timeLeft) {
 
@@ -67,8 +71,9 @@ public class CompleteState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void enter() {
-		timer = new Timer(this, 10000);
-		PlayerContext.getInstance().showScreenSaverOn();
+		PlayerContext.getInstance().showCompleteState();
+		timer = new Timer(this, 10);
+		PlayerContext.getInstance().setTimer(timer);
 
 	}
 

@@ -18,6 +18,7 @@ package edu.ics372.groupProject2.states;
  * and are not responsible for any loss or damage resulting from its use.  
  */
 
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 
 /**
@@ -26,6 +27,7 @@ import edu.ics372.groupProject2.timer.Notifiable;
  */
 public class PauseState extends PlayerState implements Notifiable { // Notifiable implementation?
 	private static PauseState instance;
+	private Show currentPausedShow = PlayerContext.showSelected;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -72,6 +74,18 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 	@Override
 	public void onPlayShowRequest() {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
+	}
+
+	// TODO need to fix display for show when paused and playing if selecting
+	// currently if selected when show is paused or played /xx is showing n1 and /10
+	// and should show
+	// current show selected only.
+
+	@Override
+	public void onSelectShowRequest() {
+//		PlayerContext.getInstance().showPausedShow();
+		PlayerContext.getInstance().onSelectShowRequest(currentPausedShow);
+//		PlayerContext.getInstance().changeState(PauseState.getInstance());
 	}
 
 	@Override

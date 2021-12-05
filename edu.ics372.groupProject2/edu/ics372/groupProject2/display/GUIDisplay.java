@@ -140,9 +140,9 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showBeginningStateStatus() { // testing
+	public void showCompleteState() {
 		// showStatus.setText("Playing");
-		statusText.setText("Status: In BeginningState ");
+		statusText.setText("No show selected "); // old text, Status: In Complete State.
 
 	}
 
@@ -184,7 +184,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 
 	@Override
 	public void showSelectedShow(Show showDetails) {
-		statusText.setText("Status: Selected Show " + showDetails.getName());
+		statusText.setText(showDetails.getName()); // removed "Status: Selected Show "
 	}
 
 	private String formatShowTime(int timeLeft, int totalTime) {
@@ -211,6 +211,5 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	@Override
 	public void showPausedShow() {
 		// TODO Auto-generated method stub
-		System.out.println("HEY??");
 	}
 }
