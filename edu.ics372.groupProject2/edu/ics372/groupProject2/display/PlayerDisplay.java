@@ -96,5 +96,10 @@ public interface PlayerDisplay {
 	/**
 	 * Shows the beginning of a show
 	 */
-	public void showBeginningStateStatus(); // testing method signature
+	public void showBeginningStateStatus();
+
+	/**
+	 * 
+	 */
+	public void showCompletedShow(Show show);
 }
