@@ -187,6 +187,11 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		statusText.setText("Status: Selected Show " + showDetails.getName());
 	}
 
+	@Override
+	public void showCompletedShow(Show showDetails) {
+		statusText.setText("Status: Completed show " + showDetails.getName());
+	}
+
 	private String formatShowTime(int timeLeft, int totalTime) {
 		String timeLeftMinutes = Integer.toString(timeLeft / 60);
 		String timeLeftSeconds = Integer.toString(timeLeft % 60);

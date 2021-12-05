@@ -101,13 +101,14 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onTimerRunsOut() {
+		timer.stop();
+		PlayerContext.getInstance().setTimer(timer);
 		PlayerContext.getInstance().showTimeLeft(0);
-		this.onStopShowRequest();
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());
 	}
 
 	@Override
 	public void onTimerTicked(int timeLeft) {
-
 		PlayerContext.getInstance().showPlayingShow();
 	}
 
