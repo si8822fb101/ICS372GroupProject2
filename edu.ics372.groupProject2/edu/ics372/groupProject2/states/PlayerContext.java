@@ -255,17 +255,21 @@ public class PlayerContext {
 		display.showScreenSaverOn();
 	}
 
+	/**
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 * 
+	 */
 	public void showStatusBeginningState() {
 		display.showBeginningStateStatus();
 	}
 
 	/**
-	 * This invokes the right method of the display. This helps protect the states
-	 * from changes to the way the system utilizes the state changes.
-	 *
+	 * Method to show completed show status in the display
+	 * 
 	 */
-	public void showScreenSaverOff() {
-		display.showScreenSaverOff();
+	public void showCompletedShow() {
+		display.showCompletedShow(this.showSelected);
 	}
 
 	/**

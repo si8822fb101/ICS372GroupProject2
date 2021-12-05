@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
@@ -53,11 +54,28 @@ public class CompleteState extends PlayerState implements Notifiable {
 	 * Handle Player stop event
 	 */
 	public void onStopRequest() {
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
+	}
+
+	/*
+	 * Handle select show event
+	 */
+	@Override
+	public void onSelectShowRequest(Show show) {
 		PlayerContext.getInstance().changeState(BeginningState.getInstance());
+	}
+
+	/*
+	 * Handle timer runs out event
+	 */
+	@Override
+	public void onTimerRunsOut() {
+		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
 	@Override
 	public void onTimerTicked(int timeLeft) {
+		// TODO Auto-generated method stub
 
 	}
 
@@ -67,13 +85,16 @@ public class CompleteState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void enter() {
-		timer = new Timer(this, 10000);
+		timer = new Timer(this, 10);
 		PlayerContext.getInstance().showScreenSaverOn();
-
+		PlayerContext.getInstance().setTimer(timer);
 	}
 
 	@Override
 	public void leave() {
+		timer.stop();
+		timer = null;
+		PlayerContext.getInstance().setTimer(timer);
 	}
 
 }
