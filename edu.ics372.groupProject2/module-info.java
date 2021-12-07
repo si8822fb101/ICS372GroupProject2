@@ -1,4 +1,4 @@
-module edu.ics372.ICS372GroupProject2 {
+module edu.ics372.groupProject2 {
 	requires javafx.controls;
 	requires javafx.base;
 	requires java.desktop;
