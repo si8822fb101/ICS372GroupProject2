@@ -188,6 +188,11 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		statusText.setText(showDetails.getName()); // removed "Status: Selected Show "
 	}
 
+	@Override
+	public void showCompletedShow(Show showDetails) {
+		statusText.setText("Status: Completed show " + showDetails.getName());
+	}
+
 	private String formatShowTime(int timeLeft, int totalTime) {
 		String timeLeftMinutes = Integer.toString(timeLeft / 60);
 		String timeLeftSeconds = Integer.toString(timeLeft % 60);
@@ -209,8 +214,4 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		return timeLeftMinutes + ":" + timeLeftSeconds + "/" + totalTimeMinutes + ":" + totalTimeSeconds;
 	}
 
-	@Override
-	public void showPausedShow() {
-		// TODO Auto-generated method stub
-	}
 }
