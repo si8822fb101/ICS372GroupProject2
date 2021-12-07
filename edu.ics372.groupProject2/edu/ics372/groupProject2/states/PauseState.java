@@ -77,7 +77,6 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 	}
 
 	// TODO need to fix display for show when paused and playing if selecting
-	// currently if selected when show is paused or played /xx is showing n1 and /10
 	// and should show
 	// current show selected only.
 
