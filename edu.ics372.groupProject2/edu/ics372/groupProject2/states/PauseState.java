@@ -18,6 +18,7 @@ package edu.ics372.groupProject2.states;
  * and are not responsible for any loss or damage resulting from its use.  
  */
 
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 
 /**
@@ -26,6 +27,7 @@ import edu.ics372.groupProject2.timer.Notifiable;
  */
 public class PauseState extends PlayerState implements Notifiable { // Notifiable implementation?
 	private static PauseState instance;
+	private Show currentPausedShow = PlayerContext.showSelected;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -78,12 +80,7 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 
 	@Override
 	public void enter() {
-
-		// timer = new Timer(this,
-		// PlayerContext.getInstance().getShowSelected().getTime());
-		// timer.stop();
 		PlayerContext.getInstance().timer.stop();
-//		PlayerContext.getInstance().showTimeLeft(timer.getTimeValue());
 		PlayerContext.getInstance().showTimeLeft(PlayerContext.getInstance().timer.getTimeValue());
 		PlayerContext.getInstance().showPausedShow();
 	}

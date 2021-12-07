@@ -85,6 +85,7 @@ public class BeginningState extends PlayerState implements Notifiable {
 
 	@Override
 	public void leave() {
+		// System.out.println("Leaving beginning(select) state");
 		timer.stop();
 		timer = null;
 		PlayerContext.getInstance().setTimer(timer);

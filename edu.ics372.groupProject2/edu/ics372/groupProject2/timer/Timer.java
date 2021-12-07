@@ -3,9 +3,12 @@ package edu.ics372.groupProject2.timer;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import edu.ics372.groupProject2.states.PlayerContext;
+
 public class Timer implements PropertyChangeListener {
 	private int timeValue;
 	private Notifiable client;
+	private boolean isRewinding = false;
 
 	/**
 	 * Sets up the timer for a certain client with an initial time value
@@ -45,13 +48,35 @@ public class Timer implements PropertyChangeListener {
 		return timeValue;
 	}
 
+	/*
+	 * Returns the boolean condition of isRewinding
+	 * 
+	 * @return true if the show is rewinding, otherwise return false
+	 */
+	public boolean getIsRewinding() {
+		return isRewinding;
+	}
+
+	public void setIsRewinding(boolean rewinding) {
+		isRewinding = rewinding;
+	}
+
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
-		if (--timeValue <= 0) {
-			client.onTimerRunsOut();
-			Clock.getInstance().removePropertyChangeListener(this);
+		if (!isRewinding) {
+			if (--timeValue <= 0) {
+				client.onTimerRunsOut();
+				Clock.getInstance().removePropertyChangeListener(this);
+			} else {
+				client.onTimerTicked(timeValue);
+			}
 		} else {
-			client.onTimerTicked(timeValue);
+			if (++timeValue >= PlayerContext.getInstance().getShowSelected().getTime()) {
+				client.onTimerRunsOut();
+				Clock.getInstance().removePropertyChangeListener(this);
+			} else {
+				client.onTimerTicked(timeValue);
+			}
 		}
 	}
 }

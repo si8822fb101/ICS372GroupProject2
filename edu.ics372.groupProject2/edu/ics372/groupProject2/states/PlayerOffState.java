@@ -60,6 +60,7 @@ public class PlayerOffState extends PlayerState {
 	 */
 	@Override
 	public void enter() {
+		PlayerContext.getInstance().setTimer(null);
 		PlayerContext.getInstance().showPlayerOff();
 	}
 

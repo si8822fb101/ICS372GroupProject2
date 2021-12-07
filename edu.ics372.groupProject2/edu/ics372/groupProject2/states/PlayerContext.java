@@ -43,7 +43,7 @@ public class PlayerContext {
 	 */
 	private PlayerContext() {
 		instance = this;
-		currentState = PlayerOffState.getInstance();// UPDATED THIS BY NATE G
+		currentState = PlayerOffState.getInstance();
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class PlayerContext {
 	 *
 	 */
 	public void showShowRewinding() {
-		display.showShowRewinding();
+		display.showShowRewinding(this.showSelected, this.timer.getTimeValue());
 	}
 
 	/**
@@ -243,7 +243,7 @@ public class PlayerContext {
 	 *
 	 */
 	public void showShowFastForwarding() {
-		display.showShowFastwording();
+		display.showShowFastwording(this.showSelected, this.timer.getTimeValue());
 	}
 
 	/**
@@ -255,14 +255,9 @@ public class PlayerContext {
 		display.showScreenSaverOn();
 	}
 
-	/**
-	 * This invokes the right method of the display. This helps protect the states
-	 * from changes to the way the system utilizes the state changes.
-	 * 
-	 */
-	public void showStatusBeginningState() {
-		display.showBeginningStateStatus();
-	}
+	public void showCompleteState() {
+		display.showCompleteState();
+  }
 
 	/**
 	 * Method to show completed show status in the display
@@ -316,4 +311,12 @@ public class PlayerContext {
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
+
+	/*
+	 * Getter for returning the currentState active
+	 */
+	public PlayerState getCurrentState() {
+		return this.currentState;
+	}
+
 }

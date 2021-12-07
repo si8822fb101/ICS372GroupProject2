@@ -1,5 +1,9 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
+import edu.ics372.groupProject2.timer.Notifiable;
+import edu.ics372.groupProject2.timer.Timer;
+
 /**
  * 
  * @author Nathan Lantainge-Goetsch
@@ -24,8 +28,10 @@ package edu.ics372.groupProject2.states;
  * Represents the fast forwarding state
  *
  */
-public class FastForwardState extends PlayerState {
+public class FastForwardState extends PlayerState implements Notifiable {
 	private static FastForwardState instance;
+	private Timer timer;
+	private Show currentShow = PlayerContext.showSelected;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -61,14 +67,54 @@ public class FastForwardState extends PlayerState {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 
+	/*
+	 * Handle pause show event
+	 */
+	@Override
+	public void onPauseShowRequest() {
+		PlayerContext.getInstance().timer.stop();
+		PlayerContext.getInstance().changeState(PauseState.getInstance());
+
+	}
+
+	/*
+	 * Handle stop show event
+	 */
+	@Override
+	public void onStopShowRequest() {
+		PlayerContext.getInstance().timer.stop();
+		PlayerContext.getInstance().showStoppedShow();
+		PlayerContext.getInstance().showCompleteState();
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
+
+	}
+
+	@Override
+	public void onTimerTicked(int timeLeft) {
+		PlayerContext.getInstance().timer.addTimeValue(-1);
+		PlayerContext.getInstance().showShowFastForwarding();
+	}
+
+	@Override
+	public void onTimerRunsOut() {
+		PlayerContext.getInstance().showTimeLeft(0);
+		PlayerContext.getInstance().showCompleteState();
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());//
+	}
+
 	@Override
 	public void enter() {
+		PlayerContext.getInstance().timer.setIsRewinding(false);
+		PlayerContext.getInstance().timer.stop();
+		timer = new Timer(this, PlayerContext.getInstance().timer.getTimeValue());
+		PlayerContext.getInstance().setTimer(timer);
 		PlayerContext.getInstance().showShowFastForwarding();
 	}
 
 	@Override
 	public void leave() {
-		PlayerContext.getInstance().showPlayerOn();
+		timer.stop();
+		timer = null;
 	}
 
 }

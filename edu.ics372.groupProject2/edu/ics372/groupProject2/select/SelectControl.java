@@ -1,6 +1,10 @@
 package edu.ics372.groupProject2.select;
 
+import edu.ics372.groupProject2.states.FastForwardState;
+import edu.ics372.groupProject2.states.PauseState;
+import edu.ics372.groupProject2.states.PlayState;
 import edu.ics372.groupProject2.states.PlayerContext;
+import edu.ics372.groupProject2.states.RewindState;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -16,9 +20,15 @@ public class SelectControl extends ListView<Show> {
 		setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
-				Show show = (Show) getSelectionModel().getSelectedItem();
-				PlayerContext.getInstance().onSelectShowRequest(show);
-				// code to use the Show object
+				// Only selects a show when not in the pauseState
+				boolean canClick = !(PlayerContext.getInstance().getCurrentState().getClass().equals(PauseState.class)
+						|| PlayerContext.getInstance().getCurrentState().getClass().equals(PlayState.class)
+						|| PlayerContext.getInstance().getCurrentState().getClass().equals(FastForwardState.class)
+						|| PlayerContext.getInstance().getCurrentState().getClass().equals(RewindState.class));
+				if (canClick) {
+					Show show = (Show) getSelectionModel().getSelectedItem();
+					PlayerContext.getInstance().onSelectShowRequest(show);
+				}
 			}
 		});
 

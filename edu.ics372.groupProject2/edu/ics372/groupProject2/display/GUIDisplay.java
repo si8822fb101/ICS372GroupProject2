@@ -40,7 +40,8 @@ import javafx.stage.WindowEvent;
  */
 
 /**
- * GUI to implement the MicrowaveDisplay interface A pretty elementary interface
+ * GUI to implement the Player/Remote Control interface A pretty elementary
+ * interface
  *
  */
 public class GUIDisplay extends Application implements PlayerDisplay {
@@ -61,8 +62,8 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		playerOn = new PlayerOnButton("On");// UPDATED CLASS NAME TO PlayerOnButton not: onButton
-		playerOff = new PlayerOffButton("Off");// UPDATED CLASS NAME TO PlayerOffButton not: offButton
+		playerOn = new PlayerOnButton("On");
+		playerOff = new PlayerOffButton("Off");
 		playShow = new PlayButton("Play");
 		stopShow = new StopButton("Stop");
 		pauseShow = new PauseButton("Pause");
@@ -140,9 +141,9 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showBeginningStateStatus() { // testing
+	public void showCompleteState() {
 		// showStatus.setText("Playing");
-		statusText.setText("Status: In BeginningState ");
+		statusText.setText("No show selected "); // old text, Status: In Complete State.
 
 	}
 
@@ -159,15 +160,15 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	}
 
 	@Override
-	public void showShowRewinding() {
+	public void showShowRewinding(Show show, int time) {
 		// showStatus.setText("Rewinding");
-		statusText.setText("Status: Rewinding");
+		statusText.setText("Rewinding " + show.getName() + " " + formatShowTime(time, show.getTime()));
 	}
 
 	@Override
-	public void showShowFastwording() {
+	public void showShowFastwording(Show show, int time) {
 		// showStatus.setText("Fast forwarding");
-		statusText.setText("Status: Fast forwarding");
+		statusText.setText("fast Forwarding " + show.getName() + " " + formatShowTime(time, show.getTime()));
 	}
 
 	@Override
@@ -184,7 +185,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 
 	@Override
 	public void showSelectedShow(Show showDetails) {
-		statusText.setText("Status: Selected Show " + showDetails.getName());
+		statusText.setText(showDetails.getName()); // removed "Status: Selected Show "
 	}
 
 	@Override
@@ -213,9 +214,4 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		return timeLeftMinutes + ":" + timeLeftSeconds + "/" + totalTimeMinutes + ":" + totalTimeSeconds;
 	}
 
-	@Override
-	public void showPausedShow() {
-		// TODO Auto-generated method stub
-		System.out.println("HEY??");
-	}
 }

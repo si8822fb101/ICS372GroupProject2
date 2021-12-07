@@ -8,7 +8,6 @@ import edu.ics372.groupProject2.timer.Timer;
  *
  * @author Nathan Lantaigne-Goetsch
  * @Copyright (c) 2021
-
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -77,7 +76,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -102,6 +101,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	public void leave() {
 		timer.stop();
 		timer = null;
+		PlayerContext.getInstance().showPlayerOff();
 		PlayerContext.getInstance().setTimer(timer);
 		PlayerContext.getInstance().showPlayerOff();
 	}

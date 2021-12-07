@@ -1,5 +1,9 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
+import edu.ics372.groupProject2.timer.Notifiable;
+import edu.ics372.groupProject2.timer.Timer;
+
 /**
  * 
  * @author Nathan Lantainge-Goetsch
@@ -24,8 +28,10 @@ package edu.ics372.groupProject2.states;
  * Represents the rewind show state
  *
  */
-public class RewindState extends PlayerState {
+public class RewindState extends PlayerState implements Notifiable {
 	private static RewindState instance;
+	private Timer timer;
+	private Show currentShow = PlayerContext.showSelected;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -61,14 +67,42 @@ public class RewindState extends PlayerState {
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 
+	/*
+	 * Handle pause show event
+	 */
+	@Override
+	public void onPauseShowRequest() {
+		PlayerContext.getInstance().timer.stop();
+		PlayerContext.getInstance().changeState(PauseState.getInstance());
+
+	}
+
+	@Override
+	public void onTimerTicked(int timeLeft) {
+		PlayerContext.getInstance().timer.addTimeValue(1);
+		PlayerContext.getInstance().showShowRewinding();
+	}
+
+	@Override
+	public void onTimerRunsOut() {
+		PlayerContext.getInstance().showTimeLeft(0);
+		PlayerContext.getInstance().showCompleteState();
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());//
+	}
+
 	@Override
 	public void enter() {
+		PlayerContext.getInstance().timer.stop();
+		timer = new Timer(this, PlayerContext.getInstance().timer.getTimeValue());
+		PlayerContext.getInstance().setTimer(timer);
+		PlayerContext.getInstance().timer.setIsRewinding(true);
 		PlayerContext.getInstance().showShowRewinding();
 	}
 
 	@Override
 	public void leave() {
-		PlayerContext.getInstance().showStoppedShow();
+		timer.stop();
+		timer = null;
 	}
 
 }

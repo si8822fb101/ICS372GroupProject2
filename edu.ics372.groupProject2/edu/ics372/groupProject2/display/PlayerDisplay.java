@@ -71,12 +71,12 @@ public interface PlayerDisplay {
 	/**
 	 * indicate that the selected show is rewinding
 	 */
-	public void showShowRewinding();
+	public void showShowRewinding(Show show, int time);
 
 	/**
 	 * indicate that the selected show is fast forwarding
 	 */
-	public void showShowFastwording();
+	public void showShowFastwording(Show show, int time);
 
 	/**
 	 * indicate that the screen saver is ON
@@ -96,6 +96,8 @@ public interface PlayerDisplay {
 	/**
 	 * Shows the beginning of a show
 	 */
+	public void showCompleteState();
+  
 	public void showBeginningStateStatus();
 
 	/**

@@ -1,5 +1,6 @@
 package edu.ics372.groupProject2.states;
 
+import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
@@ -7,7 +8,6 @@ import edu.ics372.groupProject2.timer.Timer;
  *
  * @author Nathan Lantainge-Goetsch
  * @Copyright (c) 2021
-
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -30,6 +30,7 @@ import edu.ics372.groupProject2.timer.Timer;
 public class PlayState extends PlayerState implements Notifiable {
 	private static PlayState instance;
 	private Timer timer;
+	private Show currentShow = PlayerContext.showSelected;
 
 	/**
 	 * Private constructor for the singleton pattern
@@ -55,6 +56,8 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onOffRequest() {
+		PlayerContext.getInstance().timer.stop();
+		PlayerContext.getInstance().showPlayerOff();
 		PlayerContext.getInstance().changeState(PlayerOffState.getInstance());
 	}
 
@@ -63,7 +66,7 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onPauseShowRequest() {
-		timer.stop();
+		PlayerContext.getInstance().timer.stop();
 		PlayerContext.getInstance().changeState(PauseState.getInstance());
 
 	}
@@ -75,9 +78,10 @@ public class PlayState extends PlayerState implements Notifiable {
 	public void onStopShowRequest() {
 		PlayerContext.getInstance().setShowSelected(null);
 		PlayerContext.getInstance().setIsShowSelected(false);
-		timer.stop();
+    PlayerContext.getInstance().timer.stop();
+		PlayerContext.getInstance().showStoppedShow();
+		PlayerContext.getInstance().showCompleteState();
 		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
-		PlayerContext.getInstance().showStatusBeginningState();
 	}
 
 	/*
@@ -118,8 +122,6 @@ public class PlayState extends PlayerState implements Notifiable {
 
 	@Override
 	public void enter() {
-		// timer = new Timer(this, getTimeOfSelectedShowHere);
-		// need to implement showTime field for specific show play lengths.
 		int time = -1;
 		PlayerContext ctx = PlayerContext.getInstance();
 		if (ctx.timer != null) {

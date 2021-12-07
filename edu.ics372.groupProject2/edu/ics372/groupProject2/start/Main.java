@@ -10,7 +10,7 @@ public class Main {
 		new Thread() {
 			@Override
 			public void run() {
-				Application.launch(GUIDisplay.class, null);// The null param is not necessary
+				Application.launch(GUIDisplay.class);// The null param is not necessary
 			}
 		}.start();
 	}
