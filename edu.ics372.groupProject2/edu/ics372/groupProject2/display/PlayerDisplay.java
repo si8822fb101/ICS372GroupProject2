@@ -4,7 +4,7 @@ import edu.ics372.groupProject2.select.Show;
 
 /**
  * 
- * @author Nathan Lantaigne-Goetsch
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  * @Copyright (c) 2021
  
  * Redistribution and use with or without
@@ -57,11 +57,6 @@ public interface PlayerDisplay {
 	 * indicate that the selected show is paused
 	 */
 	public void showPausedShow(Show show, int time);
-
-	/**
-	 * indicate that the selected show is paused
-	 */
-	public void showPausedShow();
 
 	/**
 	 * indicate that the selected show is stopped

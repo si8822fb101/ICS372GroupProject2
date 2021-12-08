@@ -1,5 +1,15 @@
 package edu.ics372.groupProject2.select;
 
+/**
+ * 
+ * 
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
+ * 
+ * 
+ *         Show class representing a show object that can be used to play,
+ *         pause, etc.
+ * 
+ */
 public class Show {
 
 	private String name;

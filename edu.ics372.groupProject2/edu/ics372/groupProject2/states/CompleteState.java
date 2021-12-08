@@ -6,7 +6,7 @@ import edu.ics372.groupProject2.timer.Timer;
 /**
  * Represent the Completed state
  *
- * @author lengvang
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  *
  */
 
@@ -61,9 +61,10 @@ public class CompleteState extends PlayerState implements Notifiable {
 	 * Handle Player stop event
 	 */
 	public void onStopRequest() {
-		PlayerContext.getInstance().changeState(BeginningState.getInstance());
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
+	@Override
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}

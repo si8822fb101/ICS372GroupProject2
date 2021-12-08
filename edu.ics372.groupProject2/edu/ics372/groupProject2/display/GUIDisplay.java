@@ -21,7 +21,7 @@ import javafx.stage.WindowEvent;
 
 /**
  * 
- * @author Nathan lantaigne-Goetsch
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  * @Copyright (c) 2021
  
  * Redistribution and use with or without
@@ -45,6 +45,7 @@ import javafx.stage.WindowEvent;
  *
  */
 public class GUIDisplay extends Application implements PlayerDisplay {
+
 	private GUIButton playerOn;
 	private GUIButton playerOff;
 	private GUIButton pauseShow;
@@ -54,7 +55,6 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	private GUIButton stopShow;
 	private Text statusText;
 	private SelectControl showList;
-	// Hold on to these text vars
 	private Text timerValue = new Text("            ");
 
 	/**
@@ -127,18 +127,16 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 	@Override
 	public void showPlayingShow(Show show, int time) {
 		statusText.setText("Playing " + show.getName() + " " + formatShowTime(time, show.getTime()));
-
 	}
 
 	@Override
 	public void showCompleteState() {
-		statusText.setText("No show selected ");
-
+		statusText.setText("Status: Show Completed");
 	}
 
 	@Override
 	public void showPausedShow(Show show, int time) {
-		statusText.setText("Status: Paused " + formatShowTime(time, show.getTime()) + " seconds left.");
+		statusText.setText("Status: Paused " + formatShowTime(time, show.getTime()));
 	}
 
 	@Override
@@ -153,7 +151,7 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 
 	@Override
 	public void showShowFastwording(Show show, int time) {
-		statusText.setText("fast Forwarding " + show.getName() + " " + formatShowTime(time, show.getTime()));
+		statusText.setText("Fast Forwarding " + show.getName() + " " + formatShowTime(time, show.getTime()));
 	}
 
 	@Override
@@ -171,6 +169,14 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		statusText.setText(showDetails.getName());
 	}
 
+	/**
+	 * Method to format the time during playing, pausing, fast forwarding and
+	 * rewinding
+	 * 
+	 * @param timeLeft  time left in seconds
+	 * @param totalTime total time in seconds
+	 * @return formatted time string
+	 */
 	private String formatShowTime(int timeLeft, int totalTime) {
 		String timeLeftMinutes = Integer.toString(timeLeft / 60);
 		String timeLeftSeconds = Integer.toString(timeLeft % 60);
@@ -192,8 +198,4 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		return timeLeftMinutes + ":" + timeLeftSeconds + "/" + totalTimeMinutes + ":" + totalTimeSeconds;
 	}
 
-	@Override
-	public void showPausedShow() {
-		//Can we possibly remove this, since it is not being used? - Nate
-	}
 }

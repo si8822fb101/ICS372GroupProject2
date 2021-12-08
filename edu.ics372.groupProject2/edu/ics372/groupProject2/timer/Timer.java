@@ -5,6 +5,15 @@ import java.beans.PropertyChangeListener;
 
 import edu.ics372.groupProject2.states.PlayerContext;
 
+/**
+ * The timer allows a certain time period to be set when created. It sends
+ * signals back to its creator every second and a timer runs out message when
+ * the time period has elapsed.
+ *
+ * @author Brahma Dathan
+ *
+ */
+
 public class Timer implements PropertyChangeListener {
 	private int timeValue;
 	private Notifiable client;

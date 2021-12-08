@@ -5,10 +5,10 @@ import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
- *
- * @author Nathan Lantaigne-Goetsch
+ * 
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  * @Copyright (c) 2021
-
+ 
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -21,7 +21,7 @@ import edu.ics372.groupProject2.timer.Timer;
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.
+ * and are not responsible for any loss or damage resulting from its use.  
  */
 
 /**

@@ -7,7 +7,7 @@ import edu.ics372.groupProject2.timer.Timer;
  *
  * Represents the idle; show beginning state
  *
- * @author Qaalib Farah
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  *
  */
 public class BeginningState extends PlayerState implements Notifiable {
@@ -64,6 +64,7 @@ public class BeginningState extends PlayerState implements Notifiable {
 	/*
 	 * Process clock ticks Generates the timer runs out event
 	 */
+	@Override
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}

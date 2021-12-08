@@ -5,9 +5,10 @@ import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
 /**
- *
- * @author Nathan Lantainge-Goetsch
+ * 
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  * @Copyright (c) 2021
+ 
  * Redistribution and use with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -20,7 +21,7 @@ import edu.ics372.groupProject2.timer.Timer;
  *     from this software without specific prior written permission.
  *
  * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.
+ * and are not responsible for any loss or damage resulting from its use.  
  */
 
 /**
@@ -77,9 +78,7 @@ public class PlayState extends PlayerState implements Notifiable {
 	@Override
 	public void onStopShowRequest() {
 		PlayerContext.getInstance().timer.stop();
-		PlayerContext.getInstance().showStoppedShow();
-		PlayerContext.getInstance().showCompleteState();
-		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());
 	}
 
 	/*

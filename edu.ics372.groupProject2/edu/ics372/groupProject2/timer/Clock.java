@@ -3,6 +3,33 @@ package edu.ics372.groupProject2.timer;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+/**
+ * 
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
+ * @Copyright (c) 2021
+ 
+ * Redistribution and use with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   - the use is for academic purpose only
+ *   - Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *   - Neither the name of Brahma Dathan or Sarnath Ramnath
+ *     may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * The authors do not make any claims regarding the correctness of the code in this module
+ * and are not responsible for any loss or damage resulting from its use.  
+ */
+
+/**
+ * Implements a clock as a Runnable. An object adapter that uses
+ * PropertyChangeSupport to implement the Observable part of the Observer
+ * pattern.
+ *
+ */
+
 public class Clock implements Runnable {
 	private Thread thread = new Thread(this);
 	private static Clock clock;

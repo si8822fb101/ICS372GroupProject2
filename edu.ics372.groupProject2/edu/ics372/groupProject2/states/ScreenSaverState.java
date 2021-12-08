@@ -2,7 +2,7 @@ package edu.ics372.groupProject2.states;
 
 /**
  * 
- * @author Nathan Lantaigne-Goetsch
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  * @Copyright (c) 2021
  
  * Redistribution and use with or without

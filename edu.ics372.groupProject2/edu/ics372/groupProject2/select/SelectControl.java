@@ -9,10 +9,14 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
-//Create a singleton class called ShowList with a list of Show objects.
-//You need to figure out what a Show object should contain,
-//The list could be an ObservableList.
-//You could use the following code to select a show.
+/**
+ * 
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
+ *
+ *         Select control class provides a control to select from a list of
+ *         shows on the GUI
+ * 
+ */
 
 public class SelectControl extends ListView<Show> {
 	public SelectControl() {

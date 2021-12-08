@@ -3,6 +3,13 @@ package edu.ics372.groupProject2.select;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * 
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
+ *
+ *         Show List class is the collection class from show objects
+ *
+ */
 public class ShowList {
 	private static ShowList instance;
 	private ObservableList<Show> shows;

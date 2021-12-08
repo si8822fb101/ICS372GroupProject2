@@ -7,7 +7,7 @@ import javafx.event.EventHandler;
 /**
  * The player on request is made using an instance of this class
  * 
- * @author Nathan Lantaigne-Goetsch
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  *
  */
 public class PlayerOnButton extends GUIButton implements EventHandler<ActionEvent> {

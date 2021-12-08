@@ -4,7 +4,7 @@ import edu.ics372.groupProject2.select.Show;
 
 /**
  * 
- * @author Nathan Lantaigne-Goetsch
+ * @author Qaalib Farah, Ayden Sinn, Nate Goetsch, Leng Vang, John Quinlan
  * @Copyright (c) 2021
  
  * Redistribution and use with or without
@@ -21,6 +21,7 @@ import edu.ics372.groupProject2.select.Show;
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
+
 /**
  * Super class for all states
  * 
