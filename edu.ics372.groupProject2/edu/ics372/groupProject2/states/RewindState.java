@@ -79,7 +79,7 @@ public class RewindState extends PlayerState implements Notifiable {
 
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		PlayerContext.getInstance().timer.addTimeValue(1);
+		PlayerContext.getInstance().timer.addTimeValue(-1);
 		PlayerContext.getInstance().showShowRewinding();
 	}
 

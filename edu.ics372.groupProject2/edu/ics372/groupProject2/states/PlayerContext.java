@@ -35,8 +35,7 @@ public class PlayerContext {
 	private static PlayerContext instance;
 	protected static boolean isShowSelected;
 	protected static Show showSelected;
-	protected static Timer timer; // changed to protected
-	protected static PlayerState prevState;
+	protected static Timer timer;
 
 	/**
 	 * Make it a singleton
@@ -82,19 +81,8 @@ public class PlayerContext {
 	 * @param nextState the next state
 	 */
 	public void changeState(PlayerState nextState) {
-		this.prevState = currentState;
 		currentState.leave();
 		currentState = nextState;
-		currentState.enter();
-	}
-
-	/**
-	 * Method to revert to the previous state
-	 * 
-	 */
-	public void revertToPreviousState() {
-		currentState.leave();
-		currentState = prevState;
 		currentState.enter();
 	}
 
@@ -130,6 +118,8 @@ public class PlayerContext {
 	 * Process stop show STOP request
 	 */
 	public void onStopShowRequest() {
+		this.showSelected = new Show("", 0); // dummy show variable (resolving NPE)
+		this.isShowSelected = false;
 		currentState.onStopShowRequest();
 	}
 
@@ -158,7 +148,9 @@ public class PlayerContext {
 	 * Process select show request
 	 */
 	public void onSelectShowRequest(Show showDetails) {
-		currentState.onSelectShowRequest(showDetails);
+		this.showSelected = showDetails;
+		this.isShowSelected = true;
+		currentState.onSelectShowRequest();
 	}
 
 	/**
@@ -257,57 +249,25 @@ public class PlayerContext {
 
 	public void showCompleteState() {
 		display.showCompleteState();
-  }
-
-	/**
-	 * Method to show completed show status in the display
-	 * 
-	 */
-	public void showCompletedShow() {
-		display.showCompletedShow(this.showSelected);
 	}
 
 	/**
-	 * Method to return the show selected
-	 * 
-	 * @return show selected by the user
+	 * This invokes the right method of the display. This helps protect the states
+	 * from changes to the way the system utilizes the state changes.
+	 *
 	 */
+	public void showScreenSaverOff() {
+		display.showScreenSaverOff();
+	}
+
 	public Show getShowSelected() {
 		return this.showSelected;
 	}
 
-	/**
-	 * Method to set the show selected variable
-	 * 
-	 * @param show selected by the user
-	 */
-	public void setShowSelected(Show show) {
-		this.showSelected = show;
-	}
-
-	/**
-	 * Method to check whether show is selected or not.
-	 * 
-	 * @return true or false if a show is selected
-	 */
 	public boolean isShowSelected() {
 		return this.isShowSelected;
 	}
 
-	/**
-	 * Method to set the is show selected variable
-	 * 
-	 * @param isShowSelected true or false to set
-	 */
-	public void setIsShowSelected(Boolean isShowSelected) {
-		this.isShowSelected = isShowSelected;
-	}
-
-	/**
-	 * Method to set the main timer
-	 * 
-	 * @param timer object to be set
-	 */
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}

@@ -20,6 +20,7 @@ package edu.ics372.groupProject2.states;
 
 import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
+import edu.ics372.groupProject2.timer.Timer;
 
 /**
  * Represents the pause show state
@@ -27,6 +28,7 @@ import edu.ics372.groupProject2.timer.Notifiable;
  */
 public class PauseState extends PlayerState implements Notifiable { // Notifiable implementation?
 	private static PauseState instance;
+	private Timer timer;
 	private Show currentPausedShow = PlayerContext.showSelected;
 
 	/**
@@ -58,8 +60,6 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 
 	@Override
 	public void onStopShowRequest() {
-		PlayerContext.getInstance().setShowSelected(null);
-		PlayerContext.getInstance().setIsShowSelected(false);
 		PlayerContext.getInstance().changeState(CompleteState.getInstance());
 		PlayerContext.getInstance().showStoppedShow();
 	}
@@ -75,6 +75,7 @@ public class PauseState extends PlayerState implements Notifiable { // Notifiabl
 	 */
 	@Override
 	public void onPlayShowRequest() {
+		timer = new Timer(this, PlayerContext.getInstance().timer.getTimeValue());
 		PlayerContext.getInstance().changeState(PlayState.getInstance());
 	}
 

@@ -96,6 +96,13 @@ public abstract class PlayerState {
 	}
 
 	/**
+	 * Specifies actions to be taken when a show is selected
+	 */
+	public void onSelectShowRequest() {
+
+	}
+
+	/**
 	 * Specifies actions to be taken when a show is selected w/ show parameter
 	 */
 	public void onSelectShowRequest(Show show) {

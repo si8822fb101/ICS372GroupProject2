@@ -76,9 +76,7 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onStopShowRequest() {
-		PlayerContext.getInstance().setShowSelected(null);
-		PlayerContext.getInstance().setIsShowSelected(false);
-    PlayerContext.getInstance().timer.stop();
+		PlayerContext.getInstance().timer.stop();
 		PlayerContext.getInstance().showStoppedShow();
 		PlayerContext.getInstance().showCompleteState();
 		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
@@ -105,10 +103,9 @@ public class PlayState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onTimerRunsOut() {
-		timer.stop();
-		PlayerContext.getInstance().setTimer(timer);
 		PlayerContext.getInstance().showTimeLeft(0);
-		PlayerContext.getInstance().changeState(CompleteState.getInstance());
+		PlayerContext.getInstance().showCompleteState();
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());//
 	}
 
 	@Override
@@ -116,21 +113,15 @@ public class PlayState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().showPlayingShow();
 	}
 
-	// TODO -timer (static timer is using previous show timer when new show is
-	// selected.)
-	// Set new timer to show max time when show is selected.
-
 	@Override
 	public void enter() {
-		int time = -1;
-		PlayerContext ctx = PlayerContext.getInstance();
-		if (ctx.timer != null) {
-			time = ctx.timer.getTimeValue();
+		if (PlayerContext.getInstance().timer == null) {
+			timer = new Timer(this, 0);
 		} else {
-			time = ctx.getShowSelected().getTime();
+			timer = new Timer(this, PlayerContext.getInstance().timer.getTimeValue());
 		}
-		timer = new Timer(this, time);
 		PlayerContext.getInstance().setTimer(timer);
+		PlayerContext.getInstance().timer.setIsRewinding(false);
 
 	}
 

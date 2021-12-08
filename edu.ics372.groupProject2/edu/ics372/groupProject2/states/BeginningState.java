@@ -1,6 +1,5 @@
 package edu.ics372.groupProject2.states;
 
-import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
@@ -58,29 +57,29 @@ public class BeginningState extends PlayerState implements Notifiable {
 	 * Handle selecting a show
 	 */
 	@Override
-	public void onSelectShowRequest(Show showDetails) {
-		PlayerContext.getInstance().setShowSelected(showDetails);
-		PlayerContext.getInstance().setIsShowSelected(true);
-		PlayerContext.getInstance().showSelectedShow();
+	public void onSelectShowRequest() {
 		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
-	@Override
+	/*
+	 * Process clock ticks Generates the timer runs out event
+	 */
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void enter() {
+		// System.out.println("Entering beginning(select) state");
 		PlayerContext.getInstance().showSelectedShow();
 		timer = new Timer(this, 10);
 		PlayerContext.getInstance().setTimer(timer);
+		PlayerContext.getInstance().timer.setIsRewinding(true);
 	}
 
 	@Override

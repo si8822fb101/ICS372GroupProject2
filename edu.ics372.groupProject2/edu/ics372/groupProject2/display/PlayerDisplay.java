@@ -94,14 +94,7 @@ public interface PlayerDisplay {
 	public void showSelectedShow(Show showSelected);
 
 	/**
-	 * Shows the beginning of a show
+	 * Shows the complete state
 	 */
 	public void showCompleteState();
-  
-	public void showBeginningStateStatus();
-
-	/**
-	 * 
-	 */
-	public void showCompletedShow(Show show);
 }

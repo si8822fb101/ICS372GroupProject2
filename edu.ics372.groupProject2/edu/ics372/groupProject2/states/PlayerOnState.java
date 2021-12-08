@@ -1,6 +1,5 @@
 package edu.ics372.groupProject2.states;
 
-import edu.ics372.groupProject2.select.Show;
 import edu.ics372.groupProject2.timer.Notifiable;
 import edu.ics372.groupProject2.timer.Timer;
 
@@ -64,11 +63,10 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	 * Handle select show event
 	 */
 	@Override
-	public void onSelectShowRequest(Show showDetails) {
-		PlayerContext.getInstance().setShowSelected(showDetails);
-		PlayerContext.getInstance().setIsShowSelected(true);
+	public void onSelectShowRequest() {
 		PlayerContext.getInstance().showSelectedShow();
-		PlayerContext.getInstance().changeState(BeginningState.getInstance());
+		PlayerContext.getInstance().changeState(BeginningState.getInstance()); // added transition into beginningState
+		// once show is selected.
 	}
 
 	/*
@@ -76,10 +74,8 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 	 */
 	@Override
 	public void onTimerTicked(int timeLeft) {
-
 	}
 
-	@Override
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
@@ -95,6 +91,7 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().showPlayerOn();
 		timer = new Timer(this, 10);
 		PlayerContext.getInstance().setTimer(timer);
+		PlayerContext.getInstance().timer.setIsRewinding(true);
 	}
 
 	@Override
@@ -103,7 +100,6 @@ public class PlayerOnState extends PlayerState implements Notifiable {
 		timer = null;
 		PlayerContext.getInstance().showPlayerOff();
 		PlayerContext.getInstance().setTimer(timer);
-		PlayerContext.getInstance().showPlayerOff();
 	}
 
 }

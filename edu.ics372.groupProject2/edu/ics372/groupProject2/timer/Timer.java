@@ -64,14 +64,14 @@ public class Timer implements PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		if (!isRewinding) {
-			if (--timeValue <= 0) {
+			if (++timeValue >= PlayerContext.getInstance().getShowSelected().getTime()) {
 				client.onTimerRunsOut();
 				Clock.getInstance().removePropertyChangeListener(this);
 			} else {
 				client.onTimerTicked(timeValue);
 			}
 		} else {
-			if (++timeValue >= PlayerContext.getInstance().getShowSelected().getTime()) {
+			if (--timeValue <= 0) {
 				client.onTimerRunsOut();
 				Clock.getInstance().removePropertyChangeListener(this);
 			} else {

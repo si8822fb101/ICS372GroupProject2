@@ -84,14 +84,13 @@ public class FastForwardState extends PlayerState implements Notifiable {
 	public void onStopShowRequest() {
 		PlayerContext.getInstance().timer.stop();
 		PlayerContext.getInstance().showStoppedShow();
-		PlayerContext.getInstance().showCompleteState();
 		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 
 	}
 
 	@Override
 	public void onTimerTicked(int timeLeft) {
-		PlayerContext.getInstance().timer.addTimeValue(-1);
+		PlayerContext.getInstance().timer.addTimeValue(1);
 		PlayerContext.getInstance().showShowFastForwarding();
 	}
 
@@ -99,7 +98,8 @@ public class FastForwardState extends PlayerState implements Notifiable {
 	public void onTimerRunsOut() {
 		PlayerContext.getInstance().showTimeLeft(0);
 		PlayerContext.getInstance().showCompleteState();
-		PlayerContext.getInstance().changeState(BeginningState.getInstance());//
+		PlayerContext.getInstance().changeState(CompleteState.getInstance());// Changed from beginningState to
+																				// ompletesState
 	}
 
 	@Override
@@ -108,6 +108,7 @@ public class FastForwardState extends PlayerState implements Notifiable {
 		PlayerContext.getInstance().timer.stop();
 		timer = new Timer(this, PlayerContext.getInstance().timer.getTimeValue());
 		PlayerContext.getInstance().setTimer(timer);
+		PlayerContext.getInstance().timer.setIsRewinding(false);
 		PlayerContext.getInstance().showShowFastForwarding();
 	}
 

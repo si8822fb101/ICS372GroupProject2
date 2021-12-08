@@ -104,93 +104,71 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		});
 	}
 
-	// pane.add(playerStatus, 0, 0);
-	// pane.add(showSelectedStatus, 1, 0);
-	// pane.add(showStatus, 2, 0);
-	// pane.add(screenSaverStatus, 3, 0);
-
 	@Override
 	public void showTimeLeft(int time) {
-		// timerValue.setText(" " + time);
 		statusText.setText(" " + time);
 	}
 
 	@Override
 	public void showPlayerOn() {
-		// playerStatus.setText("Player ON");
 		statusText.setText("Status: Player ON");
 	}
 
 	@Override
 	public void showPlayerOff() {
-		// playerStatus.setText("Player OFF");
 		statusText.setText("Status: Player OFF");
 	}
 
 	@Override
 	public void showBeginningShow(Show showDetails) {
-		// showSelectedStatus.setText("Show selected yes");
 		statusText.setText("" + showDetails.getName() + " " + showDetails.getTime() + " seconds left.");
 	}
 
 	@Override
 	public void showPlayingShow(Show show, int time) {
-		// showStatus.setText("Playing");
 		statusText.setText("Playing " + show.getName() + " " + formatShowTime(time, show.getTime()));
 
 	}
 
 	@Override
 	public void showCompleteState() {
-		// showStatus.setText("Playing");
-		statusText.setText("No show selected "); // old text, Status: In Complete State.
+		statusText.setText("No show selected ");
 
 	}
 
 	@Override
 	public void showPausedShow(Show show, int time) {
-		// showStatus.setText("Paused");
 		statusText.setText("Status: Paused " + formatShowTime(time, show.getTime()) + " seconds left.");
 	}
 
 	@Override
 	public void showStoppedShow() {
-		// showStatus.setText("Stopped");
 		statusText.setText("Status: Stopped");
 	}
 
 	@Override
 	public void showShowRewinding(Show show, int time) {
-		// showStatus.setText("Rewinding");
 		statusText.setText("Rewinding " + show.getName() + " " + formatShowTime(time, show.getTime()));
 	}
 
 	@Override
 	public void showShowFastwording(Show show, int time) {
-		// showStatus.setText("Fast forwarding");
 		statusText.setText("fast Forwarding " + show.getName() + " " + formatShowTime(time, show.getTime()));
 	}
 
 	@Override
 	public void showScreenSaverOn() {
-		// screenSaverStatus.setText("Screen saver on");
 		statusText.setText("Status: ICS372-01");
 	}
 
 	@Override
 	public void showScreenSaverOff() {
-		// screenSaverStatus.setText("Screen saver off");
 		statusText.setText("Status: Screen saver off");
 	}
 
 	@Override
 	public void showSelectedShow(Show showDetails) {
-		statusText.setText(showDetails.getName()); // removed "Status: Selected Show "
-	}
-
-	@Override
-	public void showCompletedShow(Show showDetails) {
-		statusText.setText("Status: Completed show " + showDetails.getName());
+		statusText.setText(showDetails.getName());
 	}
 
 	private String formatShowTime(int timeLeft, int totalTime) {
@@ -214,4 +192,8 @@ public class GUIDisplay extends Application implements PlayerDisplay {
 		return timeLeftMinutes + ":" + timeLeftSeconds + "/" + totalTimeMinutes + ":" + totalTimeSeconds;
 	}
 
+	@Override
+	public void showPausedShow() {
+		//Can we possibly remove this, since it is not being used? - Nate
+	}
 }

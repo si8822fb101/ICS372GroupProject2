@@ -1,7 +1,5 @@
 package edu.ics372.groupProject2.states;
 
-import edu.ics372.groupProject2.select.Show;
-
 /**
  * 
  * @author Nathan Lantaigne-Goetsch
@@ -59,8 +57,8 @@ public class ScreenSaverState extends PlayerState {
 	 * Handle select show event
 	 */
 	@Override
-	public void onSelectShowRequest(Show showDetails) {
-		PlayerContext.getInstance().revertToPreviousState();
+	public void onSelectShowRequest() {
+		PlayerContext.getInstance().changeState(BeginningState.getInstance());
 	}
 
 	/*
@@ -71,16 +69,12 @@ public class ScreenSaverState extends PlayerState {
 		// if a show is selected
 		// then play show
 		// otherwise undo screen saver
-		if (PlayerContext.getInstance().isShowSelected()) {
-			PlayerContext.getInstance().changeState(PlayState.getInstance());
-		} else {
-			PlayerContext.getInstance().revertToPreviousState();
-		}
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	@Override
 	public void onPauseShowRequest() {
-		PlayerContext.getInstance().revertToPreviousState();
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	/*
@@ -88,7 +82,7 @@ public class ScreenSaverState extends PlayerState {
 	 */
 	@Override
 	public void onStopShowRequest() {
-		PlayerContext.getInstance().revertToPreviousState();
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	/*
@@ -96,7 +90,7 @@ public class ScreenSaverState extends PlayerState {
 	 */
 	@Override
 	public void onRewindRequest() {
-		PlayerContext.getInstance().revertToPreviousState();
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	/*
@@ -104,7 +98,7 @@ public class ScreenSaverState extends PlayerState {
 	 */
 	@Override
 	public void onFastForwardRequest() {
-		PlayerContext.getInstance().revertToPreviousState();
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	/*
@@ -112,7 +106,7 @@ public class ScreenSaverState extends PlayerState {
 	 */
 	@Override
 	public void onOnRequest() {
-		PlayerContext.getInstance().revertToPreviousState();
+		PlayerContext.getInstance().changeState(PlayerOnState.getInstance());
 	}
 
 	@Override
@@ -122,6 +116,7 @@ public class ScreenSaverState extends PlayerState {
 
 	@Override
 	public void leave() {
+		PlayerContext.getInstance().showPlayerOn();
 	}
 
 }
